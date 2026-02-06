@@ -1,6 +1,6 @@
 name: MkDocs Build
 run-name: MkDocs Build
-on: [push]
+on: push
 
 jobs:
   build:
