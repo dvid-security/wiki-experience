@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Aircrack-ng - DVID Experience Wiki</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../index.html" target="_blank" class="custom-link">DVID Experience Wiki</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="index.html">
+<a href="../index.html">Home</a>
+<li class="chapter" data-path="hardware/index.html">
+<a href="../hardware/index.html">Hardware</a>
+<li class="chapter" data-path="gateway/index.html">
+<a href="../gateway/index.html">Gateway</a>
+<li class="chapter" data-path="cloud/index.html">
+<a href="../cloud/index.html">Cloud</a>
+<li class="chapter" data-path="policy/index.html">
+<a href="../policy/index.html">Policy</a>
+<li class="header">Tools</li>
+
+<li>
+<a href="curl.html" class="">Curl</a>
+</li>
+
+<li>
+<a href="docker.html" class="">Docker</a>
+</li>
+
+<li>
+<a href="nmap.html" class="">Nmap</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="aircrack-ng">Aircrack-ng</h1>
+<p>Aircrack-ng is a network software suite for auditing wireless networks. It includes tools for detecting networks, sniffing packets, cracking WEP and WPA/WPA2-PSK keys, and analyzing 802.11 wireless LANs.</p>
+<p>The suite works with wireless network cards that support monitor mode and can analyze 802.11a/b/g traffic.</p>
+<h2 id="main-components">Main components</h2>
+<p>The Aircrack-ng suite includes several specialized tools, each designed for specific wireless network assessment tasks:</p>
+<ol>
+<li>
+<p><strong>aircrack-ng</strong>: The core tool for cracking WEP and WPA/WPA2-PSK keys using various methods including FMS, PTW, KoreK, and dictionary attacks.</p>
+</li>
+<li>
+<p><strong>airmon-ng</strong>: Enables and disables monitor mode on wireless interfaces, which is necessary for capturing raw 802.11 frames.</p>
+</li>
+<li>
+<p><strong>airodump-ng</strong>: Captures raw 802.11 frames for analysis and key cracking.</p>
+</li>
+<li>
+<p><strong>aireplay-ng</strong>: Injects and replays wireless frames to generate traffic for later analysis. Can perform deauthentication attacks to force clients to disconnect and capture handshakes.</p>
+</li>
+<li>
+<p><strong>airbase-ng</strong>: Multi-purpose tool aimed at attacking clients rather than access points. Implements techniques like the Caffe Latte and Hirte attacks.</p>
+</li>
+<li>
+<p><strong>airdecap-ng</strong>: Decrypts WEP/WPA/WPA2 capture files once keys are known.</p>
+</li>
+<li>
+<p><strong>airtun-ng</strong>: Creates virtual tunnel interfaces.</p>
+</li>
+<li>
+<p><strong>packetforge-ng</strong>: Creates various types of encrypted packets that can be used for injection.</p>
+</li>
+</ol>
+<h2 id="additional-tools">Additional tools</h2>
+<p>The suite also includes several other specialized utilities:</p>
+<ul>
+<li><strong>airdecloak-ng</strong>: Removes WEP Cloaking™ from packet capture files.</li>
+<li><strong>airdrop-ng</strong>: Rule-based wireless deauthentication tool.</li>
+<li><strong>airgraph-ng</strong>: Graphs wireless networks to visualize relationships.</li>
+<li><strong>airolib-ng</strong>: Precomputes WPA/WPA2 passphrases in a database for later use with aircrack-ng.</li>
+<li><strong>airserv-ng</strong>: Wireless card TCP/IP server allowing multiple applications to use a wireless card.</li>
+</ul>
+<h2 id="command-line-examples">Command line examples</h2>
+<p>Here are the most commonly used commands for the main tools in the Aircrack-ng suite:</p>
+<h3 id="airmon-ng">airmon-ng</h3>
+<pre><code class="language-bash"># Check for interfering processes
+airmon-ng check
+
+# Kill interfering processes
+airmon-ng check kill
+
+# Enable monitor mode on wireless interface
+airmon-ng start wlan0
+
+# Enable monitor mode on a specific channel
+airmon-ng start wlan0 6
+
+# Disable monitor mode
+airmon-ng stop wlan0mon
+</code></pre>
+<h3 id="airodump-ng">airodump-ng</h3>
+<pre><code class="language-bash"># Capture all wireless traffic in range
+airodump-ng wlan0mon
+
+# Capture traffic from a specific access point
+airodump-ng --bssid 00:11:22:33:44:55 -c 6 wlan0mon
+
+# Save captured packets to a file
+airodump-ng --bssid 00:11:22:33:44:55 -c 6 -w capture wlan0mon
+
+# Capture only WPA handshakes
+airodump-ng --bssid 00:11:22:33:44:55 -c 6 -w capture --output-format pcap wlan0mon
+</code></pre>
+<h3 id="aireplay-ng">aireplay-ng</h3>
+<pre><code class="language-bash"># Test injection capabilities
+aireplay-ng -9 wlan0mon
+
+# Deauthenticate all clients from an access point
+aireplay-ng --deauth 0 -a 00:11:22:33:44:55 wlan0mon
+
+# Deauthenticate a specific client
+aireplay-ng --deauth 10 -a 00:11:22:33:44:55 -c AA:BB:CC:DD:EE:FF wlan0mon
+
+# Fake authentication with an access point
+aireplay-ng -1 0 -e &quot;NetworkName&quot; -a 00:11:22:33:44:55 -h 11:22:33:44:55:66 wlan0mon
+
+# ARP request replay attack (for WEP cracking)
+aireplay-ng -3 -b 00:11:22:33:44:55 -h 11:22:33:44:55:66 wlan0mon
+</code></pre>
+<h3 id="aircrack-ng_1">aircrack-ng</h3>
+<pre><code class="language-bash"># Crack WEP encryption
+aircrack-ng -b 00:11:22:33:44:55 capture*.cap
+
+# Crack WPA/WPA2 using a wordlist
+aircrack-ng -w wordlist.txt -b 00:11:22:33:44:55 capture*.cap
+
+# Crack with multiple CPU cores
+aircrack-ng -w wordlist.txt -b 00:11:22:33:44:55 capture*.cap -S
+
+# Show only the password if found
+aircrack-ng -w wordlist.txt -b 00:11:22:33:44:55 capture*.cap -l found_password.txt
+</code></pre>
+<h3 id="airdecap-ng">airdecap-ng</h3>
+<pre><code class="language-bash"># Decrypt WEP encrypted packets
+airdecap-ng -w 1A2B3C4D5E capture.cap
+
+# Decrypt WPA/WPA2 encrypted packets
+airdecap-ng -e &quot;NetworkName&quot; -p &quot;password&quot; capture.cap
+
+# Keep only decrypted packets
+airdecap-ng -w 1A2B3C4D5E -l capture.cap
+</code></pre>
+<h3 id="airolib-ng">airolib-ng</h3>
+<pre><code class="language-bash"># Create a new database
+airolib-ng my_db --init
+
+# Import a wordlist into the database
+airolib-ng my_db --import passwd /path/to/wordlist.txt
+
+# Add an ESSID to the database
+airolib-ng my_db --import essid /path/to/essid.txt
+
+# Calculate PMKs (pre-computed keys)
+airolib-ng my_db --batch
+
+# Verify the database integrity
+airolib-ng my_db --verify all
+</code></pre>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="../search/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
+</body>
+</html>

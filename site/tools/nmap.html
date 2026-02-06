@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Nmap - DVID Experience Wiki</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../index.html" target="_blank" class="custom-link">DVID Experience Wiki</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="index.html">
+<a href="../index.html">Home</a>
+<li class="chapter" data-path="hardware/index.html">
+<a href="../hardware/index.html">Hardware</a>
+<li class="chapter" data-path="gateway/index.html">
+<a href="../gateway/index.html">Gateway</a>
+<li class="chapter" data-path="cloud/index.html">
+<a href="../cloud/index.html">Cloud</a>
+<li class="chapter" data-path="policy/index.html">
+<a href="../policy/index.html">Policy</a>
+<li class="header">Tools</li>
+
+<li>
+<a href="curl.html" class="">Curl</a>
+</li>
+
+<li>
+<a href="docker.html" class="">Docker</a>
+</li>
+
+<li>
+<a href="nmap.html" class="active">Nmap</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="nmap">Nmap</h1>
+<p><code>nmap</code> is a powerful and versatile tool widely used in network security and administration.</p>
+<p><code>nmap</code> (short for Network Mapper) is an open-source tool designed for network exploration, security auditing, and vulnerability scanning. It is primarily used to discover hosts and services on a network, assess their security posture, and gather information about them.</p>
+<p><code>nmap</code> is widely used by network administrators, security professionals, and ethical hackers to map networks, identify vulnerabilities, and monitor open ports and running services. Its functionality can be extended with additional scripts and tools.</p>
+<h2 id="main-usages">Main usages</h2>
+<ol>
+<li>Network Discovery: It can identify active hosts on a network, helping to map out the devices connected to an infrastructure.</li>
+<li>Port Scanning: <code>nmap</code> scans for open ports on devices, revealing which services (e.g., HTTP, FTP, SSH) are running and accessible.</li>
+<li>Service and Version Detection: <code>nmap</code> can detect the services running on open ports and determine their software versions.</li>
+<li>Operating System Detection: By analyzing network responses, <code>nmap</code> can guess the operating system of the target device.</li>
+<li>Vulnerability Assessment: With its scripting engine (NSE - Nmap Scripting Engine), <code>nmap</code> can check for known vulnerabilities and misconfigurations in network services.</li>
+<li>Firewall Evasion and Stealth Scanning: It provides options to bypass firewalls, IDS/IPS systems, or scan in a less detectable manner.</li>
+<li>Performance and Scalability: <code>nmap</code> works well on networks of all sizes, from small LANs to large, distributed networks.</li>
+</ol>
+<h2 id="command-line-examples">Command line examples</h2>
+<p>This section will present some basic <code>nmap</code> usages.</p>
+<h3 id="basic-ping-scan">Basic ping scan</h3>
+<p><code>nam</code> can find devices that are active on the network:</p>
+<pre><code class="language-bash">nmap -sn 192.168.1.0/24
+</code></pre>
+<p>This scans the subnet <code>192.168.1.0/24</code> to list all active devices (ping only).</p>
+<h3 id="scan-for-open-ports">Scan for open ports</h3>
+<p>Check which ports are open on a specific host:</p>
+<pre><code class="language-bash">nmap 192.168.1.10
+</code></pre>
+<p>By default, this scans the 1,000 most common TCP ports.</p>
+<h3 id="detect-service-versions">Detect service versions</h3>
+<p>Identify the services and their versions running on open ports:</p>
+<pre><code class="language-bash">nmap -sV 192.168.1.10
+</code></pre>
+<h3 id="perform-an-os-detection-scan">Perform an OS detection scan</h3>
+<p><code>nmap</code> is also able to guess the operating system running on a target:</p>
+<pre><code class="language-bash">nmap -O 192.168.1.10
+</code></pre>
+<h3 id="scan-a-range-of-ips">Scan a range of IPs</h3>
+<p>It is also possible to scan multiple hosts by specifying a range of IP addresses:</p>
+<pre><code class="language-bash">nmap 192.168.1.1-100 192.168.2.0/24
+</code></pre>
+<p>Multiple targets and ranges can be added into a single command.</p>
+<h3 id="scan-specific-ports">Scan specific ports</h3>
+<p>To scan specific ports (e.g., 22 and 80):</p>
+<pre><code class="language-bash">nmap -p 22,80 192.168.1.10
+</code></pre>
+<p>To perform a full scan on the 65535 TCP ports, the <code>-p-</code> parameter can be used.</p>
+<h3 id="udp-scan">UDP scan</h3>
+<p>By default, <code>nmap</code> only scan the TCP ports. <code>-sU</code> must be indicated to scan the UDP ports:</p>
+<pre><code class="language-bash">nmap -sU 192.168.1.1
+</code></pre>
+<h3 id="run-vulnerability-scans-with-nse">Run vulnerability scans with NSE</h3>
+<p>Using Nmap's scripting engine, it can run security scripts. For example:</p>
+<pre><code class="language-bash">nmap --script vuln 192.168.1.10
+</code></pre>
+<p>This uses vulnerability detection scripts from the NSE.</p>
+<h3 id="stealth-scan">Stealth scan</h3>
+<p>To avoid triggering alarms on firewalls or IDS, you can use a SYN scan:</p>
+<pre><code class="language-bash">nmap -sS 192.168.1.10
+</code></pre>
+<p>This will only perform the SYN request of the TCP exchange, and <code>nmap</code> will not perform the full exchange. However, this method is now more detected as it was in the past.</p>
+<h3 id="save-scan-results">Save scan results</h3>
+<p>It is also possible to save the scan results to a file for later analysis:</p>
+<pre><code class="language-bash">nmap -oN scan_results.txt 192.168.1.10
+</code></pre>
+<h2 id="useful-options">Useful options</h2>
+<p>This section presents some useful <code>nmap</code> options:</p>
+<pre><code>-sn Ping scan (no port scanning).
+-sS SYN scan (stealth scan).
+-sU UDP scan.
+-sV Detect service versions.
+-O  Detect the operating system.
+-p  Specify ports to scan.
+--script    Run Nmap Scripting Engine (NSE) scripts.
+-sC Run the default NSE scripts, equivalent to --script=safe,intrusive.
+-oN Save results in a human-readable format.
+-oX Save results in XML format.
+-T  Adjust the speed of the scan (0-5).
+</code></pre>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="../search/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Jwt_tool - DVID Experience Wiki</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../index.html" target="_blank" class="custom-link">DVID Experience Wiki</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="index.html">
+<a href="../index.html">Home</a>
+<li class="chapter" data-path="hardware/index.html">
+<a href="../hardware/index.html">Hardware</a>
+<li class="chapter" data-path="gateway/index.html">
+<a href="../gateway/index.html">Gateway</a>
+<li class="chapter" data-path="cloud/index.html">
+<a href="../cloud/index.html">Cloud</a>
+<li class="chapter" data-path="policy/index.html">
+<a href="../policy/index.html">Policy</a>
+<li class="header">Tools</li>
+
+<li>
+<a href="curl.html" class="">Curl</a>
+</li>
+
+<li>
+<a href="docker.html" class="">Docker</a>
+</li>
+
+<li>
+<a href="nmap.html" class="">Nmap</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="jwt_tool">Jwt_tool</h1>
+<p><code>jwt_tool</code> is a suite of open-source tools (Python 3) designed to audit, manipulate and break JSON Web Tokens (JWTs). It enables pentesters and security engineers to :</p>
+<ul>
+<li>decode and analyse a JWT</li>
+<li>test for known vulnerabilities (alg=none, alg confusion, etc.),</li>
+<li>forge and manipulate tokens dynamically,</li>
+<li>carry out dictionary attacks to break the secret key.</li>
+</ul>
+<h2 id="main-usages">Main usages</h2>
+<ol>
+<li>Decoding / inspection: display JWT header and claims, including expiry date, signature, etc.</li>
+<li>Security / vulnerability analysis :<ul>
+<li>none algorithm detection,</li>
+<li>HMAC-RS/HS attack (public key used as secret),</li>
+<li>exploits on corrupted claims.</li>
+</ul>
+</li>
+<li>Forging / tampering: modifying the JWT header and payload (claims, algorithms, kid, etc.) to test the robustness of the target service.</li>
+<li>Key brute-force: offline dictionary or brute-force attack (several thousand words/sec).</li>
+<li>Automatic sending of requests: scan an HTTP endpoint by injecting your token, via header or cookie.</li>
+</ol>
+<h2 id="installation">Installation</h2>
+<p>Installation is just a case of cloning the GitHub repository.</p>
+<pre><code class="language-bash">git clone https://github.com/ticarpi/jwt_tool
+python3 -m pip install -r requirements.txt
+</code></pre>
+<p>On first run the tool will generate a config file, some utility files, logfile, and a set of Public and Private keys in various formats.</p>
+<h2 id="command-line-examples">Command line examples</h2>
+<p>This section will present some basic <code>jwt_tool</code> usages.</p>
+<h3 id="decode-a-jwt">Decode a JWT</h3>
+<p>This displays header, payload, time fields (exp, iat...) and validates the signature if possible.</p>
+<pre><code class="language-bash">python3 jwt_tool.py &lt;JWT&gt;
+</code></pre>
+<h3 id="check-a-public-key">Check a public key</h3>
+<p>Allows to validate that a public key is the good one to verify the JWT with a RSA algorithm.</p>
+<pre><code class="language-bash">python3 jwt_tool.py &lt;JWT&gt; -V -pk public.pem
+</code></pre>
+<h3 id="tampering">Tampering</h3>
+<p>Allows you to inject/modify header/payload fields via an interactive menu. Displays header, payload, time fields (exp, iat...) and validates the signature if possible.</p>
+<pre><code class="language-bash">python3 jwt_tool.py &lt;JWT&gt; -T -S &lt;algorithm&gt; -p &lt;password&gt;
+</code></pre>
+<h3 id="known-exploits">Known exploits</h3>
+<p><code>jwt_tool</code> allows to perform several known attacks on JWT, like the <code>none</code> and <code>null</code> algorithms, or the key confusion between RS256 and HS256.</p>
+<pre><code class="language-bash"># None algorithm injection
+python3 jwt_tool.py &lt;JWT&gt; -X a
+
+# Key confusion attack
+python3 jwt_tool.py &lt;JWT&gt; -X k -pk public_key.pub
+</code></pre>
+<h3 id="dictionnary-bruteforce-attack">Dictionnary bruteforce attack</h3>
+<p>Since <code>jwt_tools</code> is developped in Python, this is not the most efficient way to perform a brute-force attack. In the real world, you would use a more efficient tool like <code>hashcat</code> or <code>john the ripper</code> to perform this kind of attack. However, <code>jwt_tool</code> is able to perform this attack.</p>
+<pre><code class="language-bash">python3 jwt_tool.py -C -d wordlist.txt &lt;JWT&gt;
+</code></pre>
+<h3 id="automatic-tests">Automatic tests</h3>
+<p><code>jwt_tool</code> permits to perform automatic attacks against a server by injecting multiple headers in the HTTP requests and the JWT to attemps to tamper with the JWT, and prompt the server to validate a modified JWT.</p>
+<p>Use the <code>at</code> argument to perform all the attacks.</p>
+<pre><code class="language-bash">python3 jwt_tool.py -M at -t &quot;https://api.example.com/endpoint&quot; -rh &quot;Authorization: Bearer &lt;JWT&gt;&quot;
+</code></pre>
+<h2 id="vulnerabilities-covered">Vulnerabilities covered</h2>
+<p>The following CVEs exist for JWT libraries:</p>
+<ul>
+<li>CVE-2015-9235 alg:none Attack</li>
+<li>CVE-2016-5431 Key Confusion Attack</li>
+<li>CVE-2018-0114 Key Injection Attack</li>
+<li>CVE-2020-28042 Null Signature Attack</li>
+</ul>
+<p>Additional known attacks</p>
+<ul>
+<li>JWKS Spoofing</li>
+<li>"kid" Injection</li>
+<li>Cross-service relay attacks</li>
+<li>Weak secret used as a key</li>
+</ul>
+<h2 id="useful-options">Useful options</h2>
+<p>This section presents some useful <code>jwt_tool</code> options:</p>
+<pre><code>-b, --bare            return TOKENS ONLY
+-t TARGETURL, --targeturl TARGETURL
+                      URL to send HTTP request to with new JWT
+-r REQUEST, --request REQUEST
+                      URL request to base on
+-rt RATE, --rate RATE
+                      Max. number of requests per minute
+-i, --insecure        Use HTTP for passed request
+-rc COOKIES, --cookies COOKIES
+                      request cookies to send with the forged HTTP request
+-rh HEADERS, --headers HEADERS
+                      request headers to send with the forged HTTP request (can be used multiple times for additional headers)
+-pd POSTDATA, --postdata POSTDATA
+                      text string that contains all the data to be sent in a POST request
+-cv CANARYVALUE, --canaryvalue CANARYVALUE
+                      text string that appears in response for valid token (e.g. &quot;Welcome, ticarpi&quot;)
+-np, --noproxy        disable proxy for current request (change in jwtconf.ini if permanent)
+-nr, --noredir        disable redirects for current request (change in jwtconf.ini if permanent)
+-M MODE, --mode MODE  Scanning mode:
+                      pb = playbook audit
+                      er = fuzz existing claims to force errors
+                      cc = fuzz common claims
+                      at - All Tests!
+-X EXPLOIT, --exploit EXPLOIT
+                      eXploit known vulnerabilities:
+                      a = alg:none
+                      n = null signature
+                      b = blank password accepted in signature
+                      p = 'psychic signature' accepted in ECDSA signing
+                      s = spoof JWKS (specify JWKS URL with -ju, or set in jwtconf.ini to automate this attack)
+                      k = key confusion (specify public key with -pk)
+                      i = inject inline JWKS
+-ju JWKSURL, --jwksurl JWKSURL
+                      URL location where you can host a spoofed JWKS
+-S SIGN, --sign SIGN  sign the resulting token:
+                      hs256/hs384/hs512 = HMAC-SHA signing (specify a secret with -k/-p)
+                      rs256/rs384/rs512 = RSA signing (specify an RSA private key with -pr)
+                      es256/es384/es512 = Elliptic Curve signing (specify an EC private key with -pr)
+                      ps256/ps384/ps512 = PSS-RSA signing (specify an RSA private key with -pr)
+-pr PRIVKEY, --privkey PRIVKEY
+                      Private Key for Asymmetric crypto
+-T, --tamper          tamper with the JWT contents
+                      (set signing options with -S or use exploits with -X)
+-I, --injectclaims    inject new claims and update existing claims with new values
+                      (set signing options with -S or use exploits with -X)
+                      (set target claim with -hc/-pc and injection values/lists with -hv/-pv
+-hc HEADERCLAIM, --headerclaim HEADERCLAIM
+                      Header claim to tamper with
+-pc PAYLOADCLAIM, --payloadclaim PAYLOADCLAIM
+                      Payload claim to tamper with
+-hv HEADERVALUE, --headervalue HEADERVALUE
+                      Value (or file containing values) to inject into tampered header claim
+-pv PAYLOADVALUE, --payloadvalue PAYLOADVALUE
+                      Value (or file containing values) to inject into tampered payload claim
+-C, --crack           crack key for an HMAC-SHA token
+                      (specify -d/-p/-kf)
+-d DICT, --dict DICT  dictionary file for cracking
+-p PASSWORD, --password PASSWORD
+                      password for cracking
+-kf KEYFILE, --keyfile KEYFILE
+                      keyfile for cracking (when signed with 'kid' attacks)
+-V, --verify          verify the RSA signature against a Public Key
+                      (specify -pk/-jw)
+-pk PUBKEY, --pubkey PUBKEY
+                      Public Key for Asymmetric crypto
+-jw JWKSFILE, --jwksfile JWKSFILE
+                      JSON Web Key Store for Asymmetric crypto
+-Q QUERY, --query QUERY
+                      Query a token ID against the logfile to see the details of that request
+                      e.g. -Q jwttool_46820e62fe25c10a3f5498e426a9f03a
+-v, --verbose         When parsing and printing, produce (slightly more) verbose output.
+</code></pre>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="../search/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
+</body>
+</html>

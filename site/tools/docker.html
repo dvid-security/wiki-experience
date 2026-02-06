@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Docker - DVID Experience Wiki</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../index.html" target="_blank" class="custom-link">DVID Experience Wiki</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="index.html">
+<a href="../index.html">Home</a>
+<li class="chapter" data-path="hardware/index.html">
+<a href="../hardware/index.html">Hardware</a>
+<li class="chapter" data-path="gateway/index.html">
+<a href="../gateway/index.html">Gateway</a>
+<li class="chapter" data-path="cloud/index.html">
+<a href="../cloud/index.html">Cloud</a>
+<li class="chapter" data-path="policy/index.html">
+<a href="../policy/index.html">Policy</a>
+<li class="header">Tools</li>
+
+<li>
+<a href="curl.html" class="">Curl</a>
+</li>
+
+<li>
+<a href="docker.html" class="active">Docker</a>
+</li>
+
+<li>
+<a href="nmap.html" class="">Nmap</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="docker">Docker</h1>
+<p>Docker is an open-source platform that enables developers to build, package, and deploy applications in lightweight, portable containers. These containers allow applications to run consistently across different environments, whether it's a developer’s laptop, a testing server, or a production cloud server.</p>
+<p>Docker simplifies software deployment by bundling an application with all its dependencies, libraries, and configurations into a single container image that can run anywhere.</p>
+<h2 id="main-usages">Main usages</h2>
+<ol>
+<li>Microservices: Run independent services in separate containers.</li>
+<li>CI/CD Pipelines: Automate application testing and deployment.</li>
+<li>Cloud Deployments: Deploy scalable applications with Kubernetes.</li>
+<li>Local Development: Develop in isolated environments without affecting the host system.</li>
+</ol>
+<p>The containers have a good portability between systems, and permi to easily deploy multiple instances of an application. They are more efficient a rapid to deploy than classic virtual machines. Additionally, they allow to a good isolation with each container that runs in its own environment without interfering with other applications.</p>
+<h2 id="how-docker-works">How Docker works</h2>
+<p>Docker operates using three main components:</p>
+<ul>
+<li>Docker Image: A template containing an application and its dependencies. Example: <code>python:3.9</code>, <code>nginx:latest</code></li>
+<li>Docker Container: A running instance of an image. Example: running an Nginx web server inside a container.</li>
+<li>Docker Engine: The core runtime that manages images, containers, and networks.</li>
+</ul>
+<p>Here are the main differences, at a high level, between a container and a virtual machine:</p>
+<table>
+<thead>
+<tr>
+<th>Features</th>
+<th>Container</th>
+<th>Virtual Machine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Size</td>
+<td>Lightweight (MBs)</td>
+<td>Heavy (GBs)</td>
+</tr>
+<tr>
+<td>Startup Time</td>
+<td>Seconds</td>
+<td>Minutes</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Near native</td>
+<td>Slower</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>Process level</td>
+<td>Full OS level</td>
+</tr>
+<tr>
+<td>Use Case</td>
+<td>Microservices, DevOps</td>
+<td>Full OS virtualization</td>
+</tr>
+</tbody>
+</table>
+<h2 id="command-line-examples">Command line examples</h2>
+<p>This section will present some basic commands to work with Docker.</p>
+<h3 id="install-docker">Install Docker</h3>
+<p>To install Docker, here are the steps depending on your operating system.</p>
+<ul>
+<li>Linux: sudo apt install docker.io</li>
+<li>macOS/Windows: Download from Docker’s official website.</li>
+</ul>
+<h3 id="check-docker-version">Check Docker version</h3>
+<pre><code class="language-bash">docker --version
+</code></pre>
+<h3 id="run-a-container">Run a container</h3>
+<p>In this example, it is a Nginx web server.</p>
+<pre><code class="language-bash">docker run -d -p 80:80 --name my-nginx nginx
+</code></pre>
+<p>This command pulls the latest Nginx image, starts a container in detached mode (-d), and maps port 80 of the container to port 80 of the host.</p>
+<h3 id="list-running-containers">List running containers</h3>
+<pre><code class="language-bash">docker ps
+</code></pre>
+<h3 id="stop-and-remove-a-container">Stop and remove a container</h3>
+<pre><code class="language-bash">docker stop my-nginx
+docker rm my-nginx
+</code></pre>
+<h3 id="pull-a-specific-image">Pull a specific image</h3>
+<p>This command will pull a Docker image from the official Docker registry (here, the latest Ubuntu image).</p>
+<pre><code class="language-bash">docker pull ubuntu:latest
+</code></pre>
+<p>To pull a custom image from a specific registry:</p>
+<pre><code class="language-bash">docker image pull myregistry.local:5000/testing/test-image
+</code></pre>
+<h3 id="run-an-interactive-container">Run an interactive container</h3>
+<p>This command permits to open an interactive shell inside an Ubuntu container.</p>
+<pre><code class="language-bash">docker run -it ubuntu bash
+</code></pre>
+<h3 id="build-a-custom-image">Build a custom image</h3>
+<p>By using a <strong>Dockerfile</strong>, it is possible to create and build a custom Docker image. A Dockerfile is a simple text file, named <code>Dockerfile</code>, that contains all the instructions for Docker to create the image.</p>
+<ol>
+<li>Create a Dockerfile for a Python application:</li>
+</ol>
+<pre><code>FROM python:3.9
+WORKDIR /app
+COPY . /app
+CMD [&quot;python&quot;, &quot;app.py&quot;]
+</code></pre>
+<ol>
+<li>Then build and run:</li>
+</ol>
+<pre><code class="language-bash">docker build -t my-python-app .
+docker run my-python-app
+</code></pre>
+<h3 id="remove-unused-images">Remove unused images</h3>
+<pre><code class="language-bash">docker system prune -a
+</code></pre>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="../search/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
+</body>
+</html>

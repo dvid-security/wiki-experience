@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>UART - DVID Experience Wiki</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../index.html" target="_blank" class="custom-link">DVID Experience Wiki</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="index.html">
+<a href="../index.html">Home</a>
+<li class="chapter" data-path="hardware/index.html">
+<a href="index.html">Hardware</a>
+<li class="chapter" data-path="gateway/index.html">
+<a href="../gateway/index.html">Gateway</a>
+<li class="chapter" data-path="cloud/index.html">
+<a href="../cloud/index.html">Cloud</a>
+<li class="chapter" data-path="policy/index.html">
+<a href="../policy/index.html">Policy</a>
+<li class="header">Tools</li>
+
+<li>
+<a href="../tools/curl.html" class="">Curl</a>
+</li>
+
+<li>
+<a href="../tools/docker.html" class="">Docker</a>
+</li>
+
+<li>
+<a href="../tools/nmap.html" class="">Nmap</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="uart">UART</h1>
+<p>UART (<strong>Universal Asynchronous Receiver-Transmitter</strong>) is a hardware communication protocol used for <strong>asynchronous</strong> serial communication between electronic devices. Unlike SPI and I2C, which are synchronous protocols, UART does not require a clock signal. Instead, it uses a predefined baud rate to synchronize data transmission.</p>
+<p>UART is commonly used in embedded systems, microcontrollers, and communication modules such as GPS, Bluetooth, and Wi-Fi modules.</p>
+<h2 id="how-uart-works">How UART works</h2>
+<p>UART enables two-way communication between two devices over two wires:</p>
+<ul>
+<li>TX (Transmit): Sends data.</li>
+<li>RX (Receive): Receives data.</li>
+</ul>
+<p>Each device's TX line is connected to the RX line of the other device.</p>
+<p>Unlike synchronous protocols, UART does not use a clock signal. Instead, both devices agree on a common baud rate (data transmission speed). Data is transmitted one bit at a time in a structured format.</p>
+<p>Each UART transmission consists of a frame that includes:</p>
+<ul>
+<li>Start Bit (1 bit): A 0 (low voltage) is sent to indicate the beginning of data transmission.</li>
+<li>Data Bits (5–9 bits, typically 8 bits): The actual data being transmitted.</li>
+<li>Parity Bit (1 bit, optional): Used for error detection (even or odd parity).</li>
+<li>Stop Bit (1–2 bits): A 1 (high voltage) to signal the end of the transmission.</li>
+</ul>
+<p>The baud rate defines the transmission speed in bits per second (bps). Common baud rates include:</p>
+<ul>
+<li>9600 bps (default for many devices)</li>
+<li>115200 bps (commonly used for fast communication)</li>
+<li>57600, 38400, 19200, 4800 bps, etc.</li>
+</ul>
+<p><strong>Both devices must use the same baud rate to communicate properly.</strong></p>
+<h2 id="features-of-uart">Features of UART</h2>
+<p>Here are some interesting and advanced features of UART:</p>
+<ul>
+<li><strong>DMA (Direct Memory Access)</strong>: Reduces CPU load by handling large data transmissions automatically.</li>
+<li><strong>Hardware Flow Control (RTS/CTS)</strong>: Additional Request to Send (RTS) and Clear to Send (CTS) signals prevent buffer overflows.</li>
+<li><strong>Half-Duplex Mode</strong>: Uses a single wire for bidirectional communication (one direction at a time).</li>
+<li><strong>Software Serial (Bit-Banging)</strong>: Allows UART emulation on microcontrollers without dedicated UART hardware.</li>
+</ul>
+<h2 id="uart-in-everyday-use">UART in everyday use</h2>
+<ul>
+<li><strong>Embedded Systems</strong>: Communication between microcontrollers (e.g., Arduino, Raspberry Pi, ESP32).</li>
+<li><strong>GPS Modules</strong>: Transmitting location data over UART.</li>
+<li><strong>Bluetooth Modules (HC-05, HC-06)</strong>: Serial communication with wireless devices.</li>
+<li><strong>Debugging &amp; Serial Monitoring</strong>: Used for debugging with tools like the Serial Monitor in Arduino.</li>
+<li><strong>Industrial Applications</strong>: Communicating with sensors, motor controllers, and other peripherals.</li>
+</ul>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="../search/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
+</body>
+</html>

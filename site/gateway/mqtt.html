@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>MQTT - DVID Experience Wiki</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../index.html" target="_blank" class="custom-link">DVID Experience Wiki</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="index.html">
+<a href="../index.html">Home</a>
+<li class="chapter" data-path="hardware/index.html">
+<a href="../hardware/index.html">Hardware</a>
+<li class="chapter" data-path="gateway/index.html">
+<a href="index.html">Gateway</a>
+<li class="chapter" data-path="cloud/index.html">
+<a href="../cloud/index.html">Cloud</a>
+<li class="chapter" data-path="policy/index.html">
+<a href="../policy/index.html">Policy</a>
+<li class="header">Tools</li>
+
+<li>
+<a href="../tools/curl.html" class="">Curl</a>
+</li>
+
+<li>
+<a href="../tools/docker.html" class="">Docker</a>
+</li>
+
+<li>
+<a href="../tools/nmap.html" class="">Nmap</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="mqtt">MQTT</h1>
+<p>MQTT (<strong>Message Queuing Telemetry Transport</strong>) is a lightweight, publish-subscribe messaging protocol designed for constrained devices and low-bandwidth, high-latency, or unreliable networks. It is widely used in Internet of Things (IoT) applications for efficient communication between sensors, devices, and servers.</p>
+<p>Originally developed in 1999 by IBM, MQTT has become a popular protocol for IoT due to its simplicity, low resource requirements, and support for real-time messaging.</p>
+<h2 id="mqtt-versions">MQTT versions</h2>
+<p>MQTT has undergone several updates to improve its functionality and security:</p>
+<ul>
+<li>MQTT 3.1 (2010): The first widely adopted version, introducing key features like QoS.</li>
+<li>MQTT 3.1.1 (2014): Enhanced interoperability and clarified specifications.</li>
+<li>MQTT 5.0 (2019): Introduced major improvements, such as:<ul>
+<li>User-defined properties for custom metadata.</li>
+<li>Negative acknowledgments (NACK) for rejected messages.</li>
+<li>Enhanced error reporting and scalability.</li>
+</ul>
+</li>
+</ul>
+<h2 id="how-mqtt-works">How MQTT works</h2>
+<p>MQTT operates on a publish-subscribe model, differing from the traditional client-server model of protocols like HTTP. Instead of a direct connection between devices, MQTT relies on a central broker to manage communication.</p>
+<h3 id="key-components">Key components</h3>
+<p>MQTT works with 3 key components:</p>
+<ul>
+<li>Broker: The central server that routes messages between devices. Examples of brokers include Eclipse Mosquitto, HiveMQ, and AWS IoT Core.</li>
+<li>Clients: Devices or applications that connect to the broker. Clients can:<ul>
+<li>Publish messages to topics.</li>
+<li>Subscribe to topics to receive messages.</li>
+</ul>
+</li>
+<li>Topics: Messages are categorized into topics (e.g., home/temperature) to organize communication. Clients subscribe to these topics to receive relevant data and can publish to topics.</li>
+</ul>
+<p>Typically, MQTT runs over TCP but it also supports WebSocket. The default ports are 1883 (<strong>unencrypted</strong>) and 8883 (TLS <strong>encrypted</strong>).</p>
+<p>Similarly to HTTP, a <strong>Keep-Alive</strong> mechanism ensures clients remain connected to the broker.</p>
+<h3 id="workflow">Workflow</h3>
+<p>The MQTT workflow is divided into 3 phases:</p>
+<ol>
+<li>A client publishes a message to a topic (e.g., home/livingroom/temperature).</li>
+<li>The broker receives the message and forwards it to all clients that have subscribed to that topic.</li>
+<li>Subscribed clients receive the message in real time.</li>
+</ol>
+<p>Here is a simple example of a MQTT workflow:</p>
+<ol>
+<li>A temperature sensor publishes data to the topic home/livingroom/temperature, and a mobile app subscribes to the same topic to display temperature updates.</li>
+<li>The sensor sends a message: <code>{"temperature": 22.5}</code> to the broker. The broker forwards the message to all subscribers of the topic and the mobile app receives the message and updates the user interface.</li>
+<li>The mobile app can publish commands (e.g., <code>turn_off</code>) to a topic like home/livingroom/thermostat/command, which the thermostat device subscribes to.</li>
+</ol>
+<h2 id="features-of-mqtt">Features of MQTT</h2>
+<p>Here are the main features and "charcteristics" of MQTT:</p>
+<ul>
+<li><strong>Lightweight and Efficient</strong>: Designed for devices with limited processing power and memory, MQTT uses minimal bandwidth.</li>
+<li><strong>Publish-Subscribe Model</strong>: Decouples message senders (publishers) from receivers (subscribers), improving scalability.</li>
+<li><strong>Quality of Service (QoS)</strong>: MQTT ensures reliable message delivery with three QoS levels:<ul>
+<li>QoS 0: "At most once" delivery. Messages are sent without confirmation.</li>
+<li>QoS 1: "At least once" delivery. Messages are sent until acknowledged by the receiver.</li>
+<li>QoS 2: "Exactly once" delivery. Ensures the message is received only once, even if duplicates occur.</li>
+</ul>
+</li>
+<li><strong>Retained Messages</strong>: A published message can be retained by the broker, allowing new subscribers to receive the most recent message immediately.</li>
+<li><strong>Will Messages</strong>: Allows clients to define a "last will" message that the broker sends if the client disconnects unexpectedly.</li>
+<li><strong>Persistent Sessions</strong>: Supports persistent client sessions, enabling reconnection without losing subscription or message state.</li>
+<li><strong>Security</strong>: While MQTT itself does not enforce security, encryption (via TLS) and authentication (via username/password or certificates) are commonly used.</li>
+</ul>
+<h2 id="security-considerations-with-mqtt">Security considerations with MQTT</h2>
+<p>Since MQTT is commonly used in IoT, security is a major concern. Standard security practices include:</p>
+<ul>
+<li><strong>Encryption</strong>: Use TLS/SSL to encrypt messages, ensuring confidentiality.</li>
+<li><strong>Authentication</strong>: Username/password for basic authentication and certificates for mutual TLS authentication.</li>
+<li><strong>Access Control</strong>: Brokers can enforce topic-level permissions, ensuring clients can only publish/subscribe to authorized topics.</li>
+<li><strong>Firewalls</strong>: Restrict MQTT communication to trusted IP ranges and ports.</li>
+</ul>
+<h2 id="mqtt-in-everyday-use">MQTT in everyday use</h2>
+<p>MQTT is ideal for scenarios where efficiency and reliability are critical, particularly in IoT environments:</p>
+<ul>
+<li>
+<p><strong>IoT and Smart Home Devices</strong>:</p>
+<ul>
+<li>Communicating sensor data (e.g., temperature, humidity).</li>
+<li>Controlling devices (e.g., turning on lights or adjusting thermostats).</li>
+</ul>
+</li>
+<li>
+<p><strong>Industrial IoT (IIoT)</strong>:</p>
+<ul>
+<li>Monitoring equipment health and performance.</li>
+<li>Sending real-time alerts for machinery.</li>
+</ul>
+</li>
+<li>
+<p><strong>Connected Vehicles</strong>:</p>
+<ul>
+<li>Exchanging data between vehicles and servers (e.g., GPS, speed).</li>
+<li>Fleet management systems.</li>
+</ul>
+</li>
+<li>
+<p><strong>Healthcare</strong>:</p>
+<ul>
+<li>Wearable devices transmitting patient data (e.g., heart rate, blood pressure).</li>
+<li>Remote monitoring of medical equipment.</li>
+</ul>
+</li>
+<li>
+<p><strong>Energy and Utilities</strong>:</p>
+<ul>
+<li>Smart grids for monitoring energy consumption.</li>
+<li>Communication between solar panels and central systems.</li>
+</ul>
+</li>
+</ul>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="../search/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
+</body>
+</html>

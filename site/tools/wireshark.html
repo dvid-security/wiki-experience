@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Wireshark - DVID Experience Wiki</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../index.html" target="_blank" class="custom-link">DVID Experience Wiki</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="index.html">
+<a href="../index.html">Home</a>
+<li class="chapter" data-path="hardware/index.html">
+<a href="../hardware/index.html">Hardware</a>
+<li class="chapter" data-path="gateway/index.html">
+<a href="../gateway/index.html">Gateway</a>
+<li class="chapter" data-path="cloud/index.html">
+<a href="../cloud/index.html">Cloud</a>
+<li class="chapter" data-path="policy/index.html">
+<a href="../policy/index.html">Policy</a>
+<li class="header">Tools</li>
+
+<li>
+<a href="curl.html" class="">Curl</a>
+</li>
+
+<li>
+<a href="docker.html" class="">Docker</a>
+</li>
+
+<li>
+<a href="nmap.html" class="">Nmap</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="wireshark">Wireshark</h1>
+<p>Wireshark is a powerful, open-source network protocol analyzer used for network troubleshooting, analysis, and software and communications protocol development. It allows you to capture and interactively browse the traffic running on a computer network.</p>
+<h2 id="main-usages">Main usages</h2>
+<ol>
+<li>Network Troubleshooting: Diagnose network issues and performance problems.</li>
+<li>Security Analysis: Detect network intrusions and analyze suspicious traffic.</li>
+<li>Protocol Analysis: Study and understand network protocols in detail.</li>
+<li>Application Debugging: Debug network-related issues in applications.</li>
+<li>Educational Tool: Learn about network protocols and communication.</li>
+</ol>
+<h2 id="how-wireshark-works">How Wireshark works</h2>
+<p>Wireshark captures packets from a network interface and analyzes them. It uses a library called libpcap (on Unix-like systems) or WinPcap/Npcap (on Windows) to capture packets. The main components of Wireshark are:</p>
+<ol>
+<li>Capture Engine: Captures live network traffic.</li>
+<li>Dissectors: Interpret and analyze various network protocols.</li>
+<li>User Interface: Displays captured data in a human-readable format.</li>
+</ol>
+<h2 id="key-features">Key features</h2>
+<ul>
+<li>Live capture and offline analysis</li>
+<li>Deep inspection of hundreds of protocols</li>
+<li>Multi-platform: Runs on Windows, Linux, macOS, and other Unix-like systems</li>
+<li>Powerful display filters</li>
+<li>Rich VoIP analysis</li>
+<li>Decryption support for many protocols</li>
+</ul>
+<h2 id="command-line-examples">Command line examples</h2>
+<p>While Wireshark is primarily a GUI application, it also offers command-line tools like tshark for terminal-based analysis.</p>
+<h3 id="start-wireshark-from-command-line">Start Wireshark from command line</h3>
+<pre><code class="language-bash">wireshark
+</code></pre>
+<h3 id="capture-packets-on-a-specific-interface">Capture packets on a specific interface</h3>
+<pre><code class="language-bash">wireshark -i eth0 -k
+</code></pre>
+<p>This command starts Wireshark, captures on the eth0 interface (-i eth0), and immediately starts capturing (-k).</p>
+<h3 id="capture-with-a-filter">Capture with a filter</h3>
+<pre><code class="language-bash">wireshark -i eth0 -f &quot;port 80&quot;
+</code></pre>
+<p>This captures only HTTP traffic on eth0.</p>
+<h3 id="read-from-a-capture-file">Read from a capture file</h3>
+<pre><code class="language-bash">wireshark -r capture.pcap
+</code></pre>
+<p>This opens a previously saved capture file.</p>
+<h2 id="using-display-filters">Using display filters</h2>
+<p>Display filters in Wireshark allow you to focus on specific types of traffic. Here are some common filters:</p>
+<table>
+<thead>
+<tr>
+<th>Filter Purpose</th>
+<th>Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Show only HTTP traffic</td>
+<td><code>http</code></td>
+</tr>
+<tr>
+<td>Show traffic to/from a specific IP</td>
+<td><code>ip.addr == 192.168.1.1</code></td>
+</tr>
+<tr>
+<td>Show TCP traffic on port 80</td>
+<td><code>tcp.port == 80</code></td>
+</tr>
+<tr>
+<td>Show all traffic except ARP and DNS</td>
+<td><code>!(arp or dns)</code></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Display filters" src="img/wireshark_filter.png" /></p>
+<h2 id="analyzing-packets">Analyzing packets</h2>
+<p>To analyze packets in Wireshark:</p>
+<ol>
+<li>Start a capture or open a capture file.</li>
+<li>Apply relevant display filters.</li>
+<li>Click on a packet in the packet list pane to view its details.</li>
+<li>Expand the protocol layers in the packet details pane to examine specific fields.</li>
+</ol>
+<p><img alt="Packet details" src="./img/wireshark_packet_analysis.png" /></p>
+<h2 id="tips-for-effective-use">Tips for effective use</h2>
+<ol>
+<li>Use coloring rules to highlight important packets.</li>
+<li>Save frequently used filters as filter buttons.</li>
+<li>Use the "Follow TCP Stream" feature to reconstruct conversations.</li>
+<li>Leverage Wireshark's statistical tools for traffic analysis.</li>
+</ol>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="../search/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
+</body>
+</html>

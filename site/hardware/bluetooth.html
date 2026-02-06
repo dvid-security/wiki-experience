@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Bluetooth - DVID Experience Wiki</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../index.html" target="_blank" class="custom-link">DVID Experience Wiki</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="index.html">
+<a href="../index.html">Home</a>
+<li class="chapter" data-path="hardware/index.html">
+<a href="index.html">Hardware</a>
+<li class="chapter" data-path="gateway/index.html">
+<a href="../gateway/index.html">Gateway</a>
+<li class="chapter" data-path="cloud/index.html">
+<a href="../cloud/index.html">Cloud</a>
+<li class="chapter" data-path="policy/index.html">
+<a href="../policy/index.html">Policy</a>
+<li class="header">Tools</li>
+
+<li>
+<a href="../tools/curl.html" class="">Curl</a>
+</li>
+
+<li>
+<a href="../tools/docker.html" class="">Docker</a>
+</li>
+
+<li>
+<a href="../tools/nmap.html" class="">Nmap</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="bluetooth">Bluetooth</h1>
+<p>Bluetooth is a short-range wireless communication protocol designed for exchanging data between devices over a short distance using radio waves. It operates in the 2.4 GHz ISM (Industrial, Scientific, and Medical) band and is widely used for connecting devices such as smartphones, laptops, headphones, wearables, and IoT devices.</p>
+<p>Originally developed in 1994 by Ericsson, Bluetooth has evolved into a versatile protocol for both data transfer and low-power wireless communication.</p>
+<h2 id="bluetooth-versions">Bluetooth versions</h2>
+<p>Bluetooth has undergone several updates to improve its functionality and security:</p>
+<ul>
+<li>1.0 and 1.1 (1999): Initial release with basic functionality.</li>
+<li>2.0 + EDR (2004): Introduced Enhanced Data Rate (3 Mbps).</li>
+<li>3.0 + HS (2009):  Added support for faster transfer (up to 24 Mbps) using Wi-Fi.</li>
+<li>4.0 (2010): Introduced Bluetooth Low Energy (BLE).</li>
+<li>4.2 (2014): Improved security and support for IPv6.</li>
+<li>5.0 (2016): Increased range (up to 240m), speed (2 Mbps), and broadcasting capacity.</li>
+<li>5.1 (2019): Introduced direction finding for location-based services.</li>
+<li>5.2 (2020): Enhanced audio with LE Audio and support for Isochronous Channels.</li>
+<li>5.3 (2021): Improved energy efficiency and performance.</li>
+</ul>
+<h2 id="how-bluetooth-works">How Bluetooth works</h2>
+<p>Bluetooth operates on the principle of device pairing and communication over short distances, typically up to 10 meters (33 feet) for standard Bluetooth and up to 100 meters (328 feet) for Bluetooth Class 1 devices.</p>
+<h3 id="key-components">Key components</h3>
+<p>Bluetooth presents with 3 key components:</p>
+<ul>
+<li>Devices:<ul>
+<li>Central Device (Master): Initiates and manages communication (e.g., a smartphone).</li>
+<li>Peripheral Device (Slave): Responds to the central device (e.g., a wireless speaker or fitness tracker).</li>
+</ul>
+</li>
+<li>Piconet: A small network of devices connected via Bluetooth. One central device can connect to up to 7 active peripherals.</li>
+<li>Frequency Hopping: Bluetooth divides the 2.4 GHz band into 79 channels and uses frequency hopping spread spectrum (FHSS) to switch between channels up to 1600 times per second. This reduces interference and improves reliability.</li>
+</ul>
+<p>Bluetooth uses standardized profiles to define how devices communicate for specific use cases. Here are some popular profiles include:</p>
+<ul>
+<li><strong>HFP</strong> (Hands-Free Profile): Used for hands-free calling (e.g., in car systems).</li>
+<li><strong>A2DP</strong> (Advanced Audio Distribution Profile): Transmits high-quality audio.</li>
+<li><strong>HID</strong> (Human Interface Device Profile): For keyboards, mice, and game controllers.</li>
+<li><strong>SPP</strong> (Serial Port Profile): Emulates serial communication over Bluetooth.</li>
+<li><strong>GATT</strong> (Generic Attribute Profile): Used by Bluetooth Low Energy (BLE) devices.</li>
+</ul>
+<h3 id="workflow">Workflow</h3>
+<p>The Bluetooth workflow is divided in two steps: the discovery and pairing, and the communication phase.</p>
+<h4 id="device-discovery-and-pairing">Device discovery and pairing</h4>
+<p>Here are the first phases of device discovery and pairing:</p>
+<ol>
+<li>Discovery: Devices scan for others within range. A device may be in discoverable mode to advertise its presence.</li>
+<li>Pairing: Establishes a secure link between devices using methods such as:<ul>
+<li>PIN codes.</li>
+<li>Numeric Comparison (user verifies matching codes).</li>
+<li>Just Works (no authentication for low-security use cases).</li>
+</ul>
+</li>
+<li>Bonding: After pairing, devices store a long-term key to reconnect without re-pairing.</li>
+</ol>
+<h4 id="communication-phase">Communication phase</h4>
+<p>After the pairing phase, the devices can start to communicate:</p>
+<ol>
+<li>Connection Establishment: The central device initiates a connection to a peripheral.</li>
+<li>Data Exchange: Devices communicate using profiles and protocols (e.g., audio streaming or file transfer).</li>
+<li>Disconnection: Devices can terminate the connection when the communication is complete.</li>
+</ol>
+<h2 id="security-considerations-with-bluetooth">Security considerations with Bluetooth</h2>
+<p>Since Bluetooth is commonly used in IoT, security is a major concern. Standard security practices include:</p>
+<ul>
+<li><strong>Encryption</strong>: Uses AES encryption to protect data during transmission.</li>
+<li><strong>Authentication</strong>: Pairing methods prevent unauthorized devices from connecting.</li>
+<li><strong>Secure Simple Pairing (SSP)</strong>: Modern Bluetooth versions use SSP for stronger security during pairing.</li>
+<li><strong>Passive Eavesdropping Protection</strong>: Frequency hopping minimizes the risk of interception.</li>
+</ul>
+<h2 id="bluetooth-in-everyday-use">Bluetooth in everyday use</h2>
+<p>As aleady said, the Bluetooth protocol is widely used. Here are some examples of usage:</p>
+<ul>
+<li><strong>Audio Devices</strong>: Wireless headphones, speakers, and hearing aids use profiles like A2DP and HFP.</li>
+<li><strong>IoT Devices</strong>: Smart home devices (e.g., locks, thermostats, and lights).</li>
+<li><strong>Wearables</strong>: Fitness trackers and smartwatches for health monitoring and notifications.</li>
+<li><strong>Proximity Beacons</strong>: Location-based services like indoor navigation or retail promotions.</li>
+<li><strong>File Transfer</strong>: Sending files between phones, tablets, or computers.</li>
+<li><strong>Game Controllers</strong>: Bluetooth HID profile for connecting keyboards, mice, and controllers.</li>
+</ul>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="../search/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
+</body>
+</html>
