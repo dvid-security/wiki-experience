@@ -17,7 +17,7 @@ plugins:
     - search:
         indexing: 'full'
 theme:
-    name: bootstrap4
+    name: gitbook
     locale: en
     highlightjs: true
     hljs_languages:
