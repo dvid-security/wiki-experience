@@ -1,0 +1,25 @@
+site_name: DVID Experience Wiki
+# copyright: This content is for DVID Experience - All rights reserved.
+use_directory_urls: false
+nav:
+  - Home: index.md
+  - Hardware: hardware/index.md
+  - Gateway: gateway/index.md
+  - Cloud: cloud/index.md
+  - Policy: policy/index.md
+
+  - Tools:
+      - 'Curl': tools/curl.md
+      - 'Docker': tools/docker.md
+      - 'Nmap': tools/nmap.md
+
+plugins:
+    - search:
+        indexing: 'full'
+theme:
+    name: bootstrap4
+    locale: en
+    highlightjs: true
+    hljs_languages:
+        - python
+        - bash
