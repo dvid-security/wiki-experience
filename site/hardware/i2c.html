@@ -14,7 +14,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>HTTP - DVID Experience Wiki</title>
+        <title>I²C Protocol - DVID Experience Wiki</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/base.css" rel="stylesheet">
@@ -62,13 +62,13 @@
                 </div>
               </li>
               <li >
-                <a class="nav-link" href="../hardware/index.html">Hardware</a>
+                <a class="nav-link" href="index.html">Hardware</a>
               </li>
               <li >
                 <a class="nav-link" href="../gateway/index.html">Gateway</a>
               </li>
               <li >
-                <a class="nav-link" href="index.html">Cloud</a>
+                <a class="nav-link" href="../cloud/index.html">Cloud</a>
               </li>
               <li >
                 <a class="nav-link" href="../policy/index.html">Policy</a>
@@ -97,115 +97,93 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     
-    <li class="breadcrumb-item active" aria-current="page">HTTP</li>
+    <li class="breadcrumb-item active" aria-current="page">I²C Protocol</li>
   </ol>
 </nav>
 
 
-<h1 id="http">HTTP</h1>
-<p>The <strong>Hypertext Transfer Protocol</strong> (HTTP) is a foundational protocol of the World Wide Web, enabling communication between clients (such as web browsers) and servers. It is an application-layer protocol designed for transmitting hypermedia documents, such as HTML, images, and videos. HTTP follows a request-response model, where clients send requests, and servers return responses.</p>
-<p>HTTP is stateless, meaning that each request from a client to a server is processed independently, with no memory of previous interactions unless explicitly managed using mechanisms like cookies or session storage.</p>
-<h2 id="http-versions">HTTP versions</h2>
-<p>Here are the different HTTP versions with their release dates:</p>
+<h1 id="i2c-protocol">I²C Protocol</h1>
+<p>The <strong>I²C</strong> (Inter‑Integrated Circuit) protocol is a synchronous serial communication bus widely used in embedded systems to connect microcontrollers with peripheral devices such as sensors, memory chips, audio controllers, displays, and more.
+Originally developed by <strong>Philips</strong> in <strong>1982</strong>, it has since become a standard maintained by <strong>NXP</strong> and adopted across the electronics industry.</p>
+<hr />
+<h1 id="1-bus-architecture">1. Bus Architecture</h1>
+<h2 id="twowire-communication">Two‑Wire Communication</h2>
+<p>The I²C bus uses only two main signal lines:
+- <strong>SDA</strong> — Serial Data Line (bidirectional)
+- <strong>SCL</strong> — Serial Clock Line (bidirectional)</p>
+<p>A common ground reference is required for all devices.</p>
+<p>Both lines operate in <strong>open‑drain</strong> (or open‑collector) mode, meaning devices can only pull lines <em>low</em>. Pull‑up resistors keep the lines <em>high</em> when released. This mechanism prevents electrical contention and allows multiple devices—including multiple masters—to share the bus safely.</p>
+<h2 id="topology-and-addressing">Topology and Addressing</h2>
+<p>I²C supports:
+- <strong>One or more masters</strong>
+- <strong>One or multiple slaves</strong></p>
+<p>The master always initiates communication and generates the clock signal.
+Devices are usually addressed using <strong>7‑bit addresses</strong> (up to 128 possible nodes, with some reserved). A <strong>10‑bit addressing mode</strong> also exists.</p>
+<hr />
+<h1 id="2-start-and-stop-conditions">2. Start and Stop Conditions</h1>
+<p>Every I²C transaction begins and ends with specific line transitions:</p>
 <ul>
-<li>HTTP/0.9 (1991): The first version, focused on transferring raw HTML content. Supported only GET requests and lacked headers or metadata.</li>
-<li>HTTP/1.0 (1996): Introduced metadata (headers), support for POST and HEAD methods, and status codes. Each request required a separate TCP connection.</li>
-<li>HTTP/1.1 (1997): Introduced persistent connections (keep-alive), chunked transfer encoding, and pipelining. Became the most widely used version for decades.</li>
-<li>HTTP/2 (2015): Focused on performance improvements, such as multiplexing (sending multiple requests over a single connection), header compression, and prioritization.</li>
-<li>HTTP/3 (2020): Builds upon HTTP/2 but replaces TCP with QUIC, a protocol based on UDP, to reduce latency and improve connection resilience.</li>
+<li><strong>START condition</strong>:
+  SDA transitions from <code>1 → 0</code> while SCL remains at <code>1</code></li>
+<li><strong>STOP condition</strong>:
+  SDA transitions from <code>0 → 1</code> while SCL is <code>1</code></li>
 </ul>
-<h2 id="how-http-works">How HTTP Works</h2>
-<p>HTTP operates on a client-server model:</p>
+<p>These markers let devices detect when the bus becomes busy or free.</p>
+<hr />
+<h1 id="3-data-transmission">3. Data Transmission</h1>
+<h2 id="bytebased-communication">Byte‑Based Communication</h2>
+<p>Data transfers occur <strong>one byte at a time</strong>.
+Each byte must be followed by a bit of acknowledgment:</p>
 <ul>
-<li>Client: Initiates the communication by sending an HTTP request. Examples: Web browsers (e.g., Chrome, Firefox), mobile apps, or API clients.</li>
-<li>Server: Processes the request and sends back an HTTP response containing the requested resource or an error message.</li>
+<li><strong>ACK (0)</strong> — receiver confirms successful reception</li>
+<li><strong>NACK (1)</strong> — indicates the end of communication or a missing device</li>
 </ul>
-<h3 id="key-components-of-an-http-request">Key Components of an HTTP Request</h3>
-<p>An <strong>HTTP request</strong> consists of:</p>
+<h2 id="address-readwrite-bit">Address + Read/Write Bit</h2>
+<p>An I²C transfer starts with sending:
+- <strong>7‑bit slave address</strong>
+- <strong>1 bit indicating direction</strong>:
+  - <code>0</code> → Write
+  - <code>1</code> → Read</p>
+<h2 id="supported-speeds">Supported Speeds</h2>
+<p>I²C supports several standardized data rates:
+- <strong>Standard Mode</strong>: 100 kbit/s
+- <strong>Fast Mode</strong>: 400 kbit/s
+- <strong>Fast Mode+</strong>: 1 Mbit/s
+- <strong>High‑Speed Mode</strong>: 3.4 Mbit/s
+- <strong>Ultra‑Fast Mode</strong>: unidirectional, limited to specific applications</p>
+<hr />
+<h1 id="4-electrical-behavior-opendrain-and-pullups">4. Electrical Behavior: Open‑Drain and Pull‑Ups</h1>
+<p>With open‑drain outputs, devices can only pull the line low. The idle state (<code>1</code>) is maintained by <strong>pull‑up resistors</strong>, typically between <strong>4.7 kΩ and 10 kΩ</strong>.
+This setup:</p>
 <ul>
-<li>Request Line: Specifies the HTTP method, target resource (URL), and protocol version (e.g., <code>GET /index.html HTTP/1.1</code>).</li>
-<li>Headers: Metadata about the request (e.g., <code>User-Agent, Host, Accept</code>).</li>
-<li>Body: (Optional) Contains data sent with the request, such as form submissions or JSON payloads.</li>
+<li>avoids short‑circuits between devices</li>
+<li>enables multi‑master arbitration (low level is dominant)</li>
+<li>allows a shared line design suitable for many components</li>
 </ul>
-<h3 id="key-components-of-an-http-response">Key Components of an HTTP Response</h3>
-<p>An <strong>HTTP response</strong> consists of:</p>
+<hr />
+<h1 id="5-typical-i2c-communication-sequence">5. Typical I²C Communication Sequence</h1>
+<p>A standard transaction follows these steps:</p>
+<ol>
+<li>Master checks that the bus is idle (SDA = 1, SCL = 1).</li>
+<li>Master issues a <strong>START</strong> condition.</li>
+<li>Master sends the <strong>address byte + R/W bit</strong>.</li>
+<li>Slave responds with <strong>ACK</strong>.</li>
+<li>Master and slave exchange one or more bytes.</li>
+<li>Each byte is followed by ACK/NACK.</li>
+<li>Master sends a <strong>STOP</strong> condition to release the bus.</li>
+</ol>
+<hr />
+<h1 id="6-applications-of-i2c">6. Applications of I²C</h1>
+<p>I²C is extremely common in embedded and consumer electronics thanks to its flexibility and minimal wiring.
+It is used in:</p>
 <ul>
-<li>Status Line: Indicates the protocol version, status code, and status message (e.g., <code>HTTP/1.1 200 OK</code>).</li>
-<li>Headers: Metadata about the response (e.g., <code>Content-Type, Content-Length, Server</code>).</li>
-<li>Body: The content being returned (e.g., HTML, JSON, or images).</li>
-</ul>
-<h3 id="http-methods">HTTP Methods</h3>
-<p>HTTP defines several methods for different types of actions:</p>
-<ul>
-<li><code>GET</code>: Retrieves data from a server.</li>
-<li><code>POST</code>: Submits data to a server for processing (e.g., form data).</li>
-<li><code>PUT</code>: Updates or replaces a resource on the server.</li>
-<li><code>DELETE</code>: Deletes a resource on the server.</li>
-<li><code>HEAD</code>: Similar to <code>GET</code> but retrieves only headers, not the body.</li>
-<li><code>OPTIONS</code>: Describes the communication options for the target resource.</li>
-<li><code>PATCH</code>: Partially updates a resource on the server.</li>
-<li><code>TRACE</code>: Echoes the received request for diagnostic purposes.</li>
-<li><code>CONNECT</code>: Establishes a tunnel for communication, often used with HTTPS.</li>
-</ul>
-<h3 id="http-status-codes">HTTP Status Codes</h3>
-<p>HTTP uses standardized status codes to indicate the outcome of a request:</p>
-<ul>
-<li>
-<p>1xx: <strong>Informational</strong></p>
-<ul>
-<li>100 Continue: Request received, continue to send.</li>
-<li>101 Switching Protocols: Server is switching to a new protocol.</li>
-</ul>
-</li>
-<li>
-<p>2xx: <strong>Success</strong></p>
-<ul>
-<li>200 OK: Request succeeded.</li>
-<li>201 Created: Resource successfully created.</li>
-<li>204 No Content: Request succeeded, no content returned.</li>
-</ul>
-</li>
-<li>
-<p>3xx: <strong>Redirection</strong></p>
-<ul>
-<li>301 Moved Permanently: Resource has a new permanent URL.</li>
-<li>302 Found: Temporary redirection.</li>
-<li>304 Not Modified: Resource not modified since last requested.</li>
-</ul>
-</li>
-<li>
-<p>4xx: <strong>Client Errors</strong></p>
-<ul>
-<li>400 Bad Request: Invalid request syntax.</li>
-<li>401 Unauthorized: Authentication required.</li>
-<li>403 Forbidden: Access to the resource is denied.</li>
-<li>404 Not Found: Resource not found.</li>
-</ul>
-</li>
-<li>
-<p>5xx: <strong>Server Errors</strong></p>
-<ul>
-<li>500 Internal Server Error: Server encountered an error.</li>
-<li>502 Bad Gateway: Invalid response from an upstream server.</li>
-<li>503 Service Unavailable: Server is temporarily unavailable.</li>
-</ul>
-</li>
-</ul>
-<h3 id="features-of-http">Features of HTTP</h3>
-<p>Here are the main features and "charcteristics" of HTTP:</p>
-<ul>
-<li><strong>Statelessness</strong>: HTTP does not retain session information, simplifying protocol design. However, this requires mechanisms like cookies or tokens for session management.</li>
-<li><strong>Flexible Content Handling</strong>: HTTP supports various content types (e.g., HTML, JSON, XML, images, videos) via the Content-Type header.</li>
-<li><strong>Extensibility</strong>: Custom headers and methods can be added to support new functionalities.</li>
-<li><strong>Security (HTTPS)</strong>: HTTPS is the secure version of HTTP that uses SSL/TLS to encrypt communication, ensuring confidentiality, integrity, and authentication.</li>
-</ul>
-<h2 id="http-in-everyday-use">HTTP in everyday use</h2>
-<p>As aleady said, the HTTP protocol is widely used on the web. Here are some examples of usage:</p>
-<ul>
-<li><strong>Web Browsing</strong>: Browsers use HTTP to fetch and render web pages.</li>
-<li><strong>APIs</strong>: RESTful APIs rely on HTTP for communication between clients and servers. <strong>This will be particularly explored in the cloud trainings</strong>.</li>
-<li><strong>File Downloads</strong>: Many file transfer services use HTTP as the underlying protocol.</li>
-<li><strong>IoT Devices</strong>: Internet-connected devices often use HTTP to send and receive data. <strong>This will be particularly explored in the trainings</strong>.</li>
+<li>On DVID, the SSD1306 (screen) is controlled over I2C</li>
+<li>Sensor interfaces (temperature, pressure, IMU)</li>
+<li>EEPROMs and serial memory chips</li>
+<li>RTC (Real‑Time Clock) modules</li>
+<li>Audio processors and codecs</li>
+<li>LCD / LED display drivers</li>
+<li>GPIO expanders</li>
 </ul>
 
 <ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
@@ -233,16 +211,28 @@
 
     <div id="toc-collapse" class="navbar-collapse collapse card">
         <ul class="nav flex-column bs-sidenav">
-            <li class="nav-item main"><a class="nav-link" href="#http">HTTP</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#i2c-protocol">I²C Protocol</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#1-bus-architecture">1. Bus Architecture</a></li>
                 <li class="nav-item">
-                    <a href="#http-versions" class="nav-link">HTTP versions</a>
+                    <a href="#twowire-communication" class="nav-link">Two‑Wire Communication</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#how-http-works" class="nav-link">How HTTP Works</a>
+                    <a href="#topology-and-addressing" class="nav-link">Topology and Addressing</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#2-start-and-stop-conditions">2. Start and Stop Conditions</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#3-data-transmission">3. Data Transmission</a></li>
+                <li class="nav-item">
+                    <a href="#bytebased-communication" class="nav-link">Byte‑Based Communication</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#http-in-everyday-use" class="nav-link">HTTP in everyday use</a>
+                    <a href="#address-readwrite-bit" class="nav-link">Address + Read/Write Bit</a>
                 </li>
+                <li class="nav-item">
+                    <a href="#supported-speeds" class="nav-link">Supported Speeds</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#4-electrical-behavior-opendrain-and-pullups">4. Electrical Behavior: Open‑Drain and Pull‑Ups</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#5-typical-i2c-communication-sequence">5. Typical I²C Communication Sequence</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#6-applications-of-i2c">6. Applications of I²C</a></li>
         </ul>
     </div>
 </div></div>

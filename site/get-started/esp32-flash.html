@@ -14,7 +14,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>HTTP - DVID Experience Wiki</title>
+        <title>ESP32 flash - DVID Experience Wiki</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/base.css" rel="stylesheet">
@@ -48,17 +48,17 @@
           <!-- Main navigation -->
           <nav class="nav">
             <ul class="navbar-nav">
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown active">
                 <a href="#" role="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="nav-dropdown-Get Started">Get Started <b class="caret"></b></a>
                 <div class="dropdown-menu" aria-labelledby="nav-dropdown-Get Started">
                   
-<a href="../get-started/discovery.html" class="dropdown-item">Discovery</a>
+<a href="discovery.html" class="dropdown-item">Discovery</a>
                   
-<a href="../get-started/stm32-flash.html" class="dropdown-item">STM32 flash</a>
+<a href="stm32-flash.html" class="dropdown-item">STM32 flash</a>
                   
-<a href="../get-started/esp32-flash.html" class="dropdown-item">ESP32 flash</a>
+<a href="esp32-flash.html" class="dropdown-item active">ESP32 flash</a>
                   
-<a href="../get-started/esp32c6-flash.html" class="dropdown-item">ESP32-C6 flash</a>
+<a href="esp32c6-flash.html" class="dropdown-item">ESP32-C6 flash</a>
                 </div>
               </li>
               <li >
@@ -68,7 +68,7 @@
                 <a class="nav-link" href="../gateway/index.html">Gateway</a>
               </li>
               <li >
-                <a class="nav-link" href="index.html">Cloud</a>
+                <a class="nav-link" href="../cloud/index.html">Cloud</a>
               </li>
               <li >
                 <a class="nav-link" href="../policy/index.html">Policy</a>
@@ -97,116 +97,76 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     
-    <li class="breadcrumb-item active" aria-current="page">HTTP</li>
+    
+    <li class="breadcrumb-item">Get Started</li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">ESP32 flash</li>
   </ol>
 </nav>
 
 
-<h1 id="http">HTTP</h1>
-<p>The <strong>Hypertext Transfer Protocol</strong> (HTTP) is a foundational protocol of the World Wide Web, enabling communication between clients (such as web browsers) and servers. It is an application-layer protocol designed for transmitting hypermedia documents, such as HTML, images, and videos. HTTP follows a request-response model, where clients send requests, and servers return responses.</p>
-<p>HTTP is stateless, meaning that each request from a client to a server is processed independently, with no memory of previous interactions unless explicitly managed using mechanisms like cookies or session storage.</p>
-<h2 id="http-versions">HTTP versions</h2>
-<p>Here are the different HTTP versions with their release dates:</p>
+<h1 id="flash-the-esp32-side-of-my-dvid">Flash the ESP32 side of my DVID</h1>
+<h2 id="setup">Setup</h2>
+<p>You need to install the tool <code>esptool.py</code>:</p>
+<pre><code class="language-bash">pip install esptool
+esptool.py -h
+</code></pre>
+<h2 id="mapping">Mapping</h2>
+<p>Regarding the firmware, following parts are available :</p>
 <ul>
-<li>HTTP/0.9 (1991): The first version, focused on transferring raw HTML content. Supported only GET requests and lacked headers or metadata.</li>
-<li>HTTP/1.0 (1996): Introduced metadata (headers), support for POST and HEAD methods, and status codes. Each request required a separate TCP connection.</li>
-<li>HTTP/1.1 (1997): Introduced persistent connections (keep-alive), chunked transfer encoding, and pipelining. Became the most widely used version for decades.</li>
-<li>HTTP/2 (2015): Focused on performance improvements, such as multiplexing (sending multiple requests over a single connection), header compression, and prioritization.</li>
-<li>HTTP/3 (2020): Builds upon HTTP/2 but replaces TCP with QUIC, a protocol based on UDP, to reduce latency and improve connection resilience.</li>
+<li>0x0 : bootloader</li>
+<li>0x8000 : partitions</li>
+<li>0x10000 : firmware</li>
 </ul>
-<h2 id="how-http-works">How HTTP Works</h2>
-<p>HTTP operates on a client-server model:</p>
-<ul>
-<li>Client: Initiates the communication by sending an HTTP request. Examples: Web browsers (e.g., Chrome, Firefox), mobile apps, or API clients.</li>
-<li>Server: Processes the request and sends back an HTTP response containing the requested resource or an error message.</li>
-</ul>
-<h3 id="key-components-of-an-http-request">Key Components of an HTTP Request</h3>
-<p>An <strong>HTTP request</strong> consists of:</p>
-<ul>
-<li>Request Line: Specifies the HTTP method, target resource (URL), and protocol version (e.g., <code>GET /index.html HTTP/1.1</code>).</li>
-<li>Headers: Metadata about the request (e.g., <code>User-Agent, Host, Accept</code>).</li>
-<li>Body: (Optional) Contains data sent with the request, such as form submissions or JSON payloads.</li>
-</ul>
-<h3 id="key-components-of-an-http-response">Key Components of an HTTP Response</h3>
-<p>An <strong>HTTP response</strong> consists of:</p>
-<ul>
-<li>Status Line: Indicates the protocol version, status code, and status message (e.g., <code>HTTP/1.1 200 OK</code>).</li>
-<li>Headers: Metadata about the response (e.g., <code>Content-Type, Content-Length, Server</code>).</li>
-<li>Body: The content being returned (e.g., HTML, JSON, or images).</li>
-</ul>
-<h3 id="http-methods">HTTP Methods</h3>
-<p>HTTP defines several methods for different types of actions:</p>
-<ul>
-<li><code>GET</code>: Retrieves data from a server.</li>
-<li><code>POST</code>: Submits data to a server for processing (e.g., form data).</li>
-<li><code>PUT</code>: Updates or replaces a resource on the server.</li>
-<li><code>DELETE</code>: Deletes a resource on the server.</li>
-<li><code>HEAD</code>: Similar to <code>GET</code> but retrieves only headers, not the body.</li>
-<li><code>OPTIONS</code>: Describes the communication options for the target resource.</li>
-<li><code>PATCH</code>: Partially updates a resource on the server.</li>
-<li><code>TRACE</code>: Echoes the received request for diagnostic purposes.</li>
-<li><code>CONNECT</code>: Establishes a tunnel for communication, often used with HTTPS.</li>
-</ul>
-<h3 id="http-status-codes">HTTP Status Codes</h3>
-<p>HTTP uses standardized status codes to indicate the outcome of a request:</p>
-<ul>
+<h1 id="run">Run</h1>
+<p>In order to flash the firmware, you need to process following steps:
+1. Connect the "UART" header of the board to your computer via a USB-UART bridge</p>
+<p><img alt="UART Dongle Connected ESP32" src="img/uartDongleConnectedEsp32.png" /></p>
+<ol>
 <li>
-<p>1xx: <strong>Informational</strong></p>
-<ul>
-<li>100 Continue: Request received, continue to send.</li>
-<li>101 Switching Protocols: Server is switching to a new protocol.</li>
-</ul>
+<p>Power up the board (connect the UART dongle to your computer)</p>
 </li>
 <li>
-<p>2xx: <strong>Success</strong></p>
-<ul>
-<li>200 OK: Request succeeded.</li>
-<li>201 Created: Resource successfully created.</li>
-<li>204 No Content: Request succeeded, no content returned.</li>
-</ul>
+<p>Press and hold the "BTLD CORE" button</p>
+</li>
+</ol>
+<p><img alt="ESP32 BTLD Core" src="img/esp32_BTLD-CORE.png" /></p>
+<ol>
+<li>Press, then release the "RESET" button</li>
+</ol>
+<p><img alt="ESP32 Reset" src="img/esp32_RESET.png" /></p>
+<ol>
+<li>
+<p>Release the "BTLD CORE" button</p>
 </li>
 <li>
-<p>3xx: <strong>Redirection</strong></p>
-<ul>
-<li>301 Moved Permanently: Resource has a new permanent URL.</li>
-<li>302 Found: Temporary redirection.</li>
-<li>304 Not Modified: Resource not modified since last requested.</li>
-</ul>
+<p>Execute the flash command</p>
 </li>
-<li>
-<p>4xx: <strong>Client Errors</strong></p>
-<ul>
-<li>400 Bad Request: Invalid request syntax.</li>
-<li>401 Unauthorized: Authentication required.</li>
-<li>403 Forbidden: Access to the resource is denied.</li>
-<li>404 Not Found: Resource not found.</li>
-</ul>
-</li>
-<li>
-<p>5xx: <strong>Server Errors</strong></p>
-<ul>
-<li>500 Internal Server Error: Server encountered an error.</li>
-<li>502 Bad Gateway: Invalid response from an upstream server.</li>
-<li>503 Service Unavailable: Server is temporarily unavailable.</li>
-</ul>
-</li>
-</ul>
-<h3 id="features-of-http">Features of HTTP</h3>
-<p>Here are the main features and "charcteristics" of HTTP:</p>
-<ul>
-<li><strong>Statelessness</strong>: HTTP does not retain session information, simplifying protocol design. However, this requires mechanisms like cookies or tokens for session management.</li>
-<li><strong>Flexible Content Handling</strong>: HTTP supports various content types (e.g., HTML, JSON, XML, images, videos) via the Content-Type header.</li>
-<li><strong>Extensibility</strong>: Custom headers and methods can be added to support new functionalities.</li>
-<li><strong>Security (HTTPS)</strong>: HTTPS is the secure version of HTTP that uses SSL/TLS to encrypt communication, ensuring confidentiality, integrity, and authentication.</li>
-</ul>
-<h2 id="http-in-everyday-use">HTTP in everyday use</h2>
-<p>As aleady said, the HTTP protocol is widely used on the web. Here are some examples of usage:</p>
-<ul>
-<li><strong>Web Browsing</strong>: Browsers use HTTP to fetch and render web pages.</li>
-<li><strong>APIs</strong>: RESTful APIs rely on HTTP for communication between clients and servers. <strong>This will be particularly explored in the cloud trainings</strong>.</li>
-<li><strong>File Downloads</strong>: Many file transfer services use HTTP as the underlying protocol.</li>
-<li><strong>IoT Devices</strong>: Internet-connected devices often use HTTP to send and receive data. <strong>This will be particularly explored in the trainings</strong>.</li>
-</ul>
+</ol>
+<pre><code class="language-bash">esptool.py --port /dev/ttyUSB0 --baud 115200 --chip esp32 write_flash 0x10000 ./firmware.esp32
+</code></pre>
+<p>Execution trace :</p>
+<pre><code class="language-bash">esptool.py v4.6.2
+Serial port /dev/ttyUSB0
+Connecting........
+Chip is ESP32-D0WD-V3 (revision v3.1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: 94:54:c5:d8:23:58
+Uploading stub...
+Running stub...
+Stub running...
+Configuring flash size...
+Flash will be erased from 0x00000000 to 0x003fffff...
+Compressed 4194304 bytes to 191559...
+Wrote 4194304 bytes (191559 compressed) at 0x00000000 in 29.8 seconds (effective 1124.6 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+</code></pre>
+<p>You can now press the reset button to restart the training, something should appear on the screen.</p>
 
 <ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
   <li class="last-updated-holder displayDate loading">
@@ -233,16 +193,14 @@
 
     <div id="toc-collapse" class="navbar-collapse collapse card">
         <ul class="nav flex-column bs-sidenav">
-            <li class="nav-item main"><a class="nav-link" href="#http">HTTP</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#flash-the-esp32-side-of-my-dvid">Flash the ESP32 side of my DVID</a></li>
                 <li class="nav-item">
-                    <a href="#http-versions" class="nav-link">HTTP versions</a>
+                    <a href="#setup" class="nav-link">Setup</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#how-http-works" class="nav-link">How HTTP Works</a>
+                    <a href="#mapping" class="nav-link">Mapping</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#http-in-everyday-use" class="nav-link">HTTP in everyday use</a>
-                </li>
+            <li class="nav-item main"><a class="nav-link" href="#run">Run</a></li>
         </ul>
     </div>
 </div></div>

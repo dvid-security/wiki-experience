@@ -14,7 +14,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>HTTP - DVID Experience Wiki</title>
+        <title>Understanding JWT (JSON Web Tokens) - DVID Experience Wiki</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/base.css" rel="stylesheet">
@@ -97,116 +97,85 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     
-    <li class="breadcrumb-item active" aria-current="page">HTTP</li>
+    <li class="breadcrumb-item active" aria-current="page">Understanding JWT (JSON Web Tokens)</li>
   </ol>
 </nav>
 
 
-<h1 id="http">HTTP</h1>
-<p>The <strong>Hypertext Transfer Protocol</strong> (HTTP) is a foundational protocol of the World Wide Web, enabling communication between clients (such as web browsers) and servers. It is an application-layer protocol designed for transmitting hypermedia documents, such as HTML, images, and videos. HTTP follows a request-response model, where clients send requests, and servers return responses.</p>
-<p>HTTP is stateless, meaning that each request from a client to a server is processed independently, with no memory of previous interactions unless explicitly managed using mechanisms like cookies or session storage.</p>
-<h2 id="http-versions">HTTP versions</h2>
-<p>Here are the different HTTP versions with their release dates:</p>
+<h1 id="understanding-jwt-json-web-tokens">Understanding JWT (JSON Web Tokens)</h1>
+<p><strong>JSON Web Tokens (JWT)</strong> are a compact, URL‑safe mechanism for securely transmitting information between two parties. They are widely used in modern applications for authentication, authorization, and information exchange, and are defined by the open standard RFC 7519.</p>
+<p>JWTs ensure integrity and authenticity using digital signatures generated with HMAC secrets or public/private key pairs such as RSA or ECDSA.</p>
+<hr />
+<h1 id="1-why-jwts-exist">1. Why JWTs Exist</h1>
+<p>As applications evolved into distributed systems and microservice architectures, maintaining centralized server-side sessions became difficult. JWT enables <strong>stateless authentication</strong>, allowing clients to store tokens and send them with each request while servers validate them without keeping session data.</p>
+<p>JWT is ideal for:
+- APIs
+- Mobile applications
+- Single‑Page Applications (SPAs)
+- Microservices</p>
+<hr />
+<h1 id="2-structure-of-a-jwt">2. Structure of a JWT</h1>
+<p>A JWT consists of <strong>three Base64URL‑encoded parts</strong> separated by dots:</p>
+<pre><code>header.payload.signature
+</code></pre>
+<h2 id="21-header">2.1 Header</h2>
+<p>Contains metadata:
+- <code>alg</code> – signing algorithm (e.g., HS256, RS256)
+- <code>typ</code> – token type (JWT)</p>
+<p>Example:</p>
+<pre><code class="language-json">{ &quot;alg&quot;: &quot;HS256&quot;, &quot;typ&quot;: &quot;JWT&quot; }
+</code></pre>
+<h2 id="22-payload">2.2 Payload</h2>
+<p>Contains <strong>claims</strong> such as user ID, expiration, issuer, etc. Common claims:
+- <code>iss</code> – issuer
+- <code>sub</code> – subject
+- <code>aud</code> – audience
+- <code>exp</code> – expiration time
+- <code>iat</code> – issued at</p>
+<h2 id="23-signature">2.3 Signature</h2>
+<p>Ensures data integrity:</p>
+<pre><code>HMACSHA256(base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload), secret)
+</code></pre>
+<hr />
+<h1 id="3-how-jwt-authentication-works">3. How JWT Authentication Works</h1>
+<ol>
+<li>User logs in and sends credentials.</li>
+<li>Server validates them.</li>
+<li>Server generates a signed JWT.</li>
+<li>Client stores the token locally.</li>
+<li>Client sends token in <code>Authorization: Bearer &lt;token&gt;</code> header.</li>
+<li>Server verifies signature and expiration.</li>
+<li>Access is granted if valid.</li>
+</ol>
+<hr />
+<h1 id="4-types-of-jwt">4. Types of JWT</h1>
+<h2 id="jws-json-web-signature">JWS – JSON Web Signature</h2>
+<p>Signed but <strong>not encrypted</strong>; payload is readable but tamper‑proof.</p>
+<h2 id="jwe-json-web-encryption">JWE – JSON Web Encryption</h2>
+<p>Encrypted payload, ensuring confidentiality.</p>
+<hr />
+<h1 id="5-when-to-use-jwt">5. When to Use JWT</h1>
+<h3 id="authorization">Authorization</h3>
+<p>Once authenticated, clients include the JWT in each request to access permitted resources. It is widely used for SSO (Single Sign‑On).</p>
+<h3 id="information-exchange">Information Exchange</h3>
+<p>Digitally signed tokens ensure data authenticity and tamper‑resistance.</p>
+<hr />
+<h1 id="6-security-considerations">6. Security Considerations</h1>
+<h3 id="risks">Risks</h3>
 <ul>
-<li>HTTP/0.9 (1991): The first version, focused on transferring raw HTML content. Supported only GET requests and lacked headers or metadata.</li>
-<li>HTTP/1.0 (1996): Introduced metadata (headers), support for POST and HEAD methods, and status codes. Each request required a separate TCP connection.</li>
-<li>HTTP/1.1 (1997): Introduced persistent connections (keep-alive), chunked transfer encoding, and pipelining. Became the most widely used version for decades.</li>
-<li>HTTP/2 (2015): Focused on performance improvements, such as multiplexing (sending multiple requests over a single connection), header compression, and prioritization.</li>
-<li>HTTP/3 (2020): Builds upon HTTP/2 but replaces TCP with QUIC, a protocol based on UDP, to reduce latency and improve connection resilience.</li>
+<li>No built‑in revocation → requires denylist.</li>
+<li>Payload is visible unless JWE is used.</li>
+<li>Stolen tokens allow impersonation until expiration.</li>
 </ul>
-<h2 id="how-http-works">How HTTP Works</h2>
-<p>HTTP operates on a client-server model:</p>
+<h3 id="best-practices">Best Practices</h3>
 <ul>
-<li>Client: Initiates the communication by sending an HTTP request. Examples: Web browsers (e.g., Chrome, Firefox), mobile apps, or API clients.</li>
-<li>Server: Processes the request and sends back an HTTP response containing the requested resource or an error message.</li>
+<li>Use HTTPS.</li>
+<li>Set short expiration (<code>exp</code>).</li>
+<li>Use refresh tokens for long sessions.</li>
+<li>Avoid sensitive data in payload.</li>
+<li>Protect signing keys; use strong algos (RS256).</li>
 </ul>
-<h3 id="key-components-of-an-http-request">Key Components of an HTTP Request</h3>
-<p>An <strong>HTTP request</strong> consists of:</p>
-<ul>
-<li>Request Line: Specifies the HTTP method, target resource (URL), and protocol version (e.g., <code>GET /index.html HTTP/1.1</code>).</li>
-<li>Headers: Metadata about the request (e.g., <code>User-Agent, Host, Accept</code>).</li>
-<li>Body: (Optional) Contains data sent with the request, such as form submissions or JSON payloads.</li>
-</ul>
-<h3 id="key-components-of-an-http-response">Key Components of an HTTP Response</h3>
-<p>An <strong>HTTP response</strong> consists of:</p>
-<ul>
-<li>Status Line: Indicates the protocol version, status code, and status message (e.g., <code>HTTP/1.1 200 OK</code>).</li>
-<li>Headers: Metadata about the response (e.g., <code>Content-Type, Content-Length, Server</code>).</li>
-<li>Body: The content being returned (e.g., HTML, JSON, or images).</li>
-</ul>
-<h3 id="http-methods">HTTP Methods</h3>
-<p>HTTP defines several methods for different types of actions:</p>
-<ul>
-<li><code>GET</code>: Retrieves data from a server.</li>
-<li><code>POST</code>: Submits data to a server for processing (e.g., form data).</li>
-<li><code>PUT</code>: Updates or replaces a resource on the server.</li>
-<li><code>DELETE</code>: Deletes a resource on the server.</li>
-<li><code>HEAD</code>: Similar to <code>GET</code> but retrieves only headers, not the body.</li>
-<li><code>OPTIONS</code>: Describes the communication options for the target resource.</li>
-<li><code>PATCH</code>: Partially updates a resource on the server.</li>
-<li><code>TRACE</code>: Echoes the received request for diagnostic purposes.</li>
-<li><code>CONNECT</code>: Establishes a tunnel for communication, often used with HTTPS.</li>
-</ul>
-<h3 id="http-status-codes">HTTP Status Codes</h3>
-<p>HTTP uses standardized status codes to indicate the outcome of a request:</p>
-<ul>
-<li>
-<p>1xx: <strong>Informational</strong></p>
-<ul>
-<li>100 Continue: Request received, continue to send.</li>
-<li>101 Switching Protocols: Server is switching to a new protocol.</li>
-</ul>
-</li>
-<li>
-<p>2xx: <strong>Success</strong></p>
-<ul>
-<li>200 OK: Request succeeded.</li>
-<li>201 Created: Resource successfully created.</li>
-<li>204 No Content: Request succeeded, no content returned.</li>
-</ul>
-</li>
-<li>
-<p>3xx: <strong>Redirection</strong></p>
-<ul>
-<li>301 Moved Permanently: Resource has a new permanent URL.</li>
-<li>302 Found: Temporary redirection.</li>
-<li>304 Not Modified: Resource not modified since last requested.</li>
-</ul>
-</li>
-<li>
-<p>4xx: <strong>Client Errors</strong></p>
-<ul>
-<li>400 Bad Request: Invalid request syntax.</li>
-<li>401 Unauthorized: Authentication required.</li>
-<li>403 Forbidden: Access to the resource is denied.</li>
-<li>404 Not Found: Resource not found.</li>
-</ul>
-</li>
-<li>
-<p>5xx: <strong>Server Errors</strong></p>
-<ul>
-<li>500 Internal Server Error: Server encountered an error.</li>
-<li>502 Bad Gateway: Invalid response from an upstream server.</li>
-<li>503 Service Unavailable: Server is temporarily unavailable.</li>
-</ul>
-</li>
-</ul>
-<h3 id="features-of-http">Features of HTTP</h3>
-<p>Here are the main features and "charcteristics" of HTTP:</p>
-<ul>
-<li><strong>Statelessness</strong>: HTTP does not retain session information, simplifying protocol design. However, this requires mechanisms like cookies or tokens for session management.</li>
-<li><strong>Flexible Content Handling</strong>: HTTP supports various content types (e.g., HTML, JSON, XML, images, videos) via the Content-Type header.</li>
-<li><strong>Extensibility</strong>: Custom headers and methods can be added to support new functionalities.</li>
-<li><strong>Security (HTTPS)</strong>: HTTPS is the secure version of HTTP that uses SSL/TLS to encrypt communication, ensuring confidentiality, integrity, and authentication.</li>
-</ul>
-<h2 id="http-in-everyday-use">HTTP in everyday use</h2>
-<p>As aleady said, the HTTP protocol is widely used on the web. Here are some examples of usage:</p>
-<ul>
-<li><strong>Web Browsing</strong>: Browsers use HTTP to fetch and render web pages.</li>
-<li><strong>APIs</strong>: RESTful APIs rely on HTTP for communication between clients and servers. <strong>This will be particularly explored in the cloud trainings</strong>.</li>
-<li><strong>File Downloads</strong>: Many file transfer services use HTTP as the underlying protocol.</li>
-<li><strong>IoT Devices</strong>: Internet-connected devices often use HTTP to send and receive data. <strong>This will be particularly explored in the trainings</strong>.</li>
-</ul>
+<hr />
 
 <ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
   <li class="last-updated-holder displayDate loading">
@@ -233,15 +202,39 @@
 
     <div id="toc-collapse" class="navbar-collapse collapse card">
         <ul class="nav flex-column bs-sidenav">
-            <li class="nav-item main"><a class="nav-link" href="#http">HTTP</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#understanding-jwt-json-web-tokens">Understanding JWT (JSON Web Tokens)</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#1-why-jwts-exist">1. Why JWTs Exist</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#2-structure-of-a-jwt">2. Structure of a JWT</a></li>
                 <li class="nav-item">
-                    <a href="#http-versions" class="nav-link">HTTP versions</a>
+                    <a href="#21-header" class="nav-link">2.1 Header</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#how-http-works" class="nav-link">How HTTP Works</a>
+                    <a href="#22-payload" class="nav-link">2.2 Payload</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#http-in-everyday-use" class="nav-link">HTTP in everyday use</a>
+                    <a href="#23-signature" class="nav-link">2.3 Signature</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#3-how-jwt-authentication-works">3. How JWT Authentication Works</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#4-types-of-jwt">4. Types of JWT</a></li>
+                <li class="nav-item">
+                    <a href="#jws-json-web-signature" class="nav-link">JWS – JSON Web Signature</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#jwe-json-web-encryption" class="nav-link">JWE – JSON Web Encryption</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#5-when-to-use-jwt">5. When to Use JWT</a></li>
+                <li class="nav-item">
+                    <a href="#authorization" class="nav-link">Authorization</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#information-exchange" class="nav-link">Information Exchange</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#6-security-considerations">6. Security Considerations</a></li>
+                <li class="nav-item">
+                    <a href="#risks" class="nav-link">Risks</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#best-practices" class="nav-link">Best Practices</a>
                 </li>
         </ul>
     </div>

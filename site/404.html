@@ -37,7 +37,7 @@
 
       <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 	<div class="container">
-	<a class="navbar-brand" href="/index.html">DVID Experience Wiki</a>
+	<a class="navbar-brand" href="/.">DVID Experience Wiki</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
 	</button>
@@ -46,8 +46,18 @@
           <!-- Main navigation -->
           <nav class="nav">
             <ul class="navbar-nav">
-              <li >
-                <a class="nav-link" href="/index.html">Home</a>
+              <li class="nav-item dropdown">
+                <a href="#" role="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="nav-dropdown-Get Started">Get Started <b class="caret"></b></a>
+                <div class="dropdown-menu" aria-labelledby="nav-dropdown-Get Started">
+                  
+<a href="/get-started/discovery.html" class="dropdown-item">Discovery</a>
+                  
+<a href="/get-started/stm32-flash.html" class="dropdown-item">STM32 flash</a>
+                  
+<a href="/get-started/esp32-flash.html" class="dropdown-item">ESP32 flash</a>
+                  
+<a href="/get-started/esp32c6-flash.html" class="dropdown-item">ESP32-C6 flash</a>
+                </div>
               </li>
               <li >
                 <a class="nav-link" href="/hardware/index.html">Hardware</a>
@@ -61,16 +71,8 @@
               <li >
                 <a class="nav-link" href="/policy/index.html">Policy</a>
               </li>
-              <li class="nav-item dropdown">
-                <a href="#" role="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="nav-dropdown-Tools">Tools <b class="caret"></b></a>
-                <div class="dropdown-menu" aria-labelledby="nav-dropdown-Tools">
-                  
-<a href="/tools/curl.html" class="dropdown-item">Curl</a>
-                  
-<a href="/tools/docker.html" class="dropdown-item">Docker</a>
-                  
-<a href="/tools/nmap.html" class="dropdown-item">Nmap</a>
-                </div>
+              <li >
+                <a class="nav-link" href="/tools/index.html">Tools</a>
               </li>
             </ul>
           </nav>
