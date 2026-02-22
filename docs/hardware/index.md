@@ -6,3 +6,4 @@ You can navigate from menu or just use the search function or with the following
 
 - [Bluetooth](bluetooth.md)
 - [UART](uart.md)
+- [I2C](i2c.md)

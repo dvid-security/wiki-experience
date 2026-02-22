@@ -4,6 +4,10 @@ In this area, you will find useful information about all the tools presented and
 
 ## Summary
 
-- [Nmap](nmap.md)
+- [Aircrack-ng](aircrack-ng.md)
 - [Curl](curl.md)
 - [Docker](docker.md)
+- [Nmap](nmap.md)
+- [jwt-tool](jwt-tool.md)
+- [nmcli](nmcli.md)
+- [wireshark](wireshark.md)

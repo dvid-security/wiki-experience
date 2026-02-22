@@ -2,16 +2,16 @@ site_name: DVID Experience Wiki
 # copyright: This content is for DVID Experience - All rights reserved.
 use_directory_urls: false
 nav:
-  - Home: index.md
+  - Get Started:
+      - Discovery : get-started/discovery.md
+      - STM32 flash : get-started/stm32-flash.md
+      - ESP32 flash : get-started/esp32-flash.md
+      - ESP32-C6 flash : get-started/esp32c6-flash.md
   - Hardware: hardware/index.md
   - Gateway: gateway/index.md
   - Cloud: cloud/index.md
   - Policy: policy/index.md
-
-  - Tools:
-      - 'Curl': tools/curl.md
-      - 'Docker': tools/docker.md
-      - 'Nmap': tools/nmap.md
+  - Tools: tools/index.md
 
 plugins:
     - search:
