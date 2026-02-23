@@ -11,12 +11,12 @@ esptool.py -h
 ## Mapping
 Regarding the firmware, following parts are available :
 
-* 0x0 : bootloader
+* 0x1000 : bootloader
 * 0x8000 : partitions
 * 0x10000 : firmware
 
 # Run
 
 ```bash
-esptool.py --port /dev/ttyUSB0 --baud 115200 --chip esp32c6 write_flash 0x0 bootloader.bin 0x8000 partitions.bin 0x10000 firmware.bin
+esptool.py --port /dev/ttyUSB0 --baud 115200 --chip esp32c6 write_flash 0x1000 bootloader.bin 0x8000 partitions.bin 0x10000 firmware.bin
 ```

@@ -11,7 +11,7 @@ esptool.py -h
 ## Mapping
 Regarding the firmware, following parts are available :
 
-* 0x0 : bootloader
+* 0x1000 : bootloader
 * 0x8000 : partitions
 * 0x10000 : firmware
 
@@ -63,3 +63,12 @@ Hard resetting via RTS pin...
 ```
 
 You can now press the reset button to restart the training, something should appear on the screen.
+
+## Recrue
+
+* Bootloader : [ESP32 bootloader.bin](./files/esp32_bootloader)
+* Partition : [ESP32 partition.bin](./files/esp32_partition.bin)
+
+```bash
+esptool.py --port /dev/ttyUSB0 --baud 115200 --chip esp32 write_flash 0x1000 bootloader.bin 0x8000 esp32_parititons.bin 0x10000 ./[FIRMWARE]
+```
