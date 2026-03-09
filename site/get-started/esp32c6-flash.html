@@ -112,15 +112,36 @@
 <pre><code class="language-bash">pip install esptool
 esptool.py -h
 </code></pre>
+<p>You need to download those files :</p>
+<ul>
+<li>
+<p><a href="files/espc6_bootloader.bin">espc6_bootloader.bin</a></p>
+</li>
+<li>
+<p><a href="files/espc6_partition-table.bin">espc6_partition-table.bin</a></p>
+</li>
+<li>
+<p><a href="files/espc6_com-at.bin">espc6_com-at.bin</a></p>
+</li>
+</ul>
 <h2 id="mapping">Mapping</h2>
 <p>Regarding the firmware, following parts are available :</p>
 <ul>
-<li>0x0 : bootloader</li>
-<li>0x8000 : partitions</li>
-<li>0x10000 : firmware</li>
+<li>
+<p>0x1000 : espc6_bootloader.bin</p>
+</li>
+<li>
+<p>0x8000 : espc6_partition-table.bin</p>
+</li>
+<li>
+<p>0x10000 : espc6_com-at.bin</p>
+</li>
 </ul>
+<h2 id="wiring">Wiring</h2>
+<p>To flash the ESPC6, you need to wire your UART dongle according the following picture :</p>
+<p><img alt="Wiring ESPC6" src="img/wiringC6.jpg" /></p>
 <h1 id="run">Run</h1>
-<pre><code class="language-bash">esptool.py --port /dev/ttyUSB0 --baud 115200 --chip esp32c6 write_flash 0x0 bootloader.bin 0x8000 partitions.bin 0x10000 firmware.bin
+<pre><code class="language-bash">esptool.py --port /dev/ttyUSB0 --baud 115200 --chip esp32c6 write_flash 0x1000 espc6_bootloader.bin 0x8000 espc6_partition-table.bin 0x10000 espc6_com-at.bin
 </code></pre>
 
 <ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
@@ -154,6 +175,9 @@ esptool.py -h
                 </li>
                 <li class="nav-item">
                     <a href="#mapping" class="nav-link">Mapping</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#wiring" class="nav-link">Wiring</a>
                 </li>
             <li class="nav-item main"><a class="nav-link" href="#run">Run</a></li>
         </ul>

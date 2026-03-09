@@ -115,7 +115,7 @@ esptool.py -h
 <h2 id="mapping">Mapping</h2>
 <p>Regarding the firmware, following parts are available :</p>
 <ul>
-<li>0x0 : bootloader</li>
+<li>0x1000 : bootloader</li>
 <li>0x8000 : partitions</li>
 <li>0x10000 : firmware</li>
 </ul>
@@ -167,6 +167,13 @@ Leaving...
 Hard resetting via RTS pin...
 </code></pre>
 <p>You can now press the reset button to restart the training, something should appear on the screen.</p>
+<h2 id="recrue">Recrue</h2>
+<ul>
+<li>Bootloader : <a href="./files/esp32_bootloader">ESP32 bootloader.bin</a></li>
+<li>Partition : <a href="./files/esp32_partition.bin">ESP32 partition.bin</a></li>
+</ul>
+<pre><code class="language-bash">esptool.py --port /dev/ttyUSB0 --baud 115200 --chip esp32 write_flash 0x1000 bootloader.bin 0x8000 esp32_parititons.bin 0x10000 ./[FIRMWARE]
+</code></pre>
 
 <ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
   <li class="last-updated-holder displayDate loading">
@@ -201,6 +208,9 @@ Hard resetting via RTS pin...
                     <a href="#mapping" class="nav-link">Mapping</a>
                 </li>
             <li class="nav-item main"><a class="nav-link" href="#run">Run</a></li>
+                <li class="nav-item">
+                    <a href="#recrue" class="nav-link">Recrue</a>
+                </li>
         </ul>
     </div>
 </div></div>
