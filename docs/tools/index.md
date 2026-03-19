@@ -11,3 +11,4 @@ In this area, you will find useful information about all the tools presented and
 - [jwt-tool](jwt-tool.md)
 - [nmcli](nmcli.md)
 - [wireshark](wireshark.md)
+- [cutecom](cutecom.md)
