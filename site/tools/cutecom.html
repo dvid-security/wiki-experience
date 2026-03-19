@@ -10,14 +10,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="./img/favicon.ico">
-        <title>DVID Experience Wiki</title>
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>CuteCom Usage Documentation - DVID Experience Wiki</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/base.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -32,14 +32,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="js/base.js"></script> 
+    <script src="../js/base.js"></script> 
     </head>
 
-    <body class="homepage ">
+    <body class="">
 
       <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 	<div class="container">
-	<a class="navbar-brand" href=".">DVID Experience Wiki</a>
+	<a class="navbar-brand" href="..">DVID Experience Wiki</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
 	</button>
@@ -52,29 +52,29 @@
                 <a href="#" role="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="nav-dropdown-Get Started">Get Started <b class="caret"></b></a>
                 <div class="dropdown-menu" aria-labelledby="nav-dropdown-Get Started">
                   
-<a href="get-started/discovery.html" class="dropdown-item">Discovery</a>
+<a href="../get-started/discovery.html" class="dropdown-item">Discovery</a>
                   
-<a href="get-started/stm32-flash.html" class="dropdown-item">STM32 flash</a>
+<a href="../get-started/stm32-flash.html" class="dropdown-item">STM32 flash</a>
                   
-<a href="get-started/esp32-flash.html" class="dropdown-item">ESP32 flash</a>
+<a href="../get-started/esp32-flash.html" class="dropdown-item">ESP32 flash</a>
                   
-<a href="get-started/esp32c6-flash.html" class="dropdown-item">ESP32-C6 flash</a>
+<a href="../get-started/esp32c6-flash.html" class="dropdown-item">ESP32-C6 flash</a>
                 </div>
               </li>
               <li >
-                <a class="nav-link" href="hardware/index.html">Hardware</a>
+                <a class="nav-link" href="../hardware/index.html">Hardware</a>
               </li>
               <li >
-                <a class="nav-link" href="gateway/index.html">Gateway</a>
+                <a class="nav-link" href="../gateway/index.html">Gateway</a>
               </li>
               <li >
-                <a class="nav-link" href="cloud/index.html">Cloud</a>
+                <a class="nav-link" href="../cloud/index.html">Cloud</a>
               </li>
               <li >
-                <a class="nav-link" href="policy/index.html">Policy</a>
+                <a class="nav-link" href="../policy/index.html">Policy</a>
               </li>
               <li >
-                <a class="nav-link" href="tools/index.html">Tools</a>
+                <a class="nav-link" href="index.html">Tools</a>
               </li>
             </ul>
           </nav>
@@ -97,16 +97,71 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     
-    <li class="breadcrumb-item active" aria-current="page">Welcome to the Wiki</li>
+    <li class="breadcrumb-item active" aria-current="page">CuteCom Usage Documentation</li>
   </ol>
 </nav>
 
 
-<h1 id="welcome-to-the-wiki">Welcome to the Wiki</h1>
-<p>In this area, you will find useful information in order to help you during your DVID experience.
-You can navigate from menu or just use the search function.</p>
-<p>In case of issue, you can contact us here : issue@dvid.eu or chat with us.</p>
-<p>Have fun !</p>
+<h1 id="cutecom-usage-documentation">CuteCom Usage Documentation</h1>
+<h2 id="introduction">Introduction</h2>
+<p>CuteCom is a simple graphical interface for communicating over a serial port (UART). It is useful for testing firmware, interacting with electronic boards, or debugging serial communication.</p>
+<h2 id="installation">Installation</h2>
+<h3 id="on-linux-debianubuntu">On Linux (Debian/Ubuntu)</h3>
+<pre><code class="language-bash">sudo apt update
+sudo apt install cutecom
+</code></pre>
+<h3 id="on-fedora">On Fedora</h3>
+<pre><code class="language-bash">sudo dnf install cutecom
+</code></pre>
+<h3 id="on-arch-linux">On Arch Linux</h3>
+<pre><code class="language-bash">sudo pacman -S cutecom
+</code></pre>
+<h2 id="launching-the-application">Launching the Application</h2>
+<pre><code class="language-bash">cutecom
+</code></pre>
+<p>Or via the menu: Applications &gt; Development &gt; CuteCom.</p>
+<h2 id="serial-port-configuration">Serial Port Configuration</h2>
+<p>Once CuteCom is open:</p>
+<ul>
+<li>Select the serial port under <strong>Device</strong> (e.g., <code>/dev/ttyUSB0</code>, <code>/dev/ttyACM0</code>).</li>
+<li>Choose the speed (baudrate), such as <strong>9600</strong>, <strong>115200</strong>, etc.</li>
+<li>Set parameters : <strong>Data bits</strong>: usually 8 / <strong>Parity</strong>: None / <strong>Stop bits</strong>: 1 / <strong>Flow control</strong>: None</li>
+<li>Click <strong>Open Device</strong>.</li>
+</ul>
+<h2 id="sending-commands">Sending Commands</h2>
+<p>Two methods are available:</p>
+<ul>
+<li>Type a command in the text field at the bottom and click <strong>Send</strong>.</li>
+<li>Enable <strong>Hex output</strong> / <strong>Hex input</strong> to send hexadecimal values.</li>
+</ul>
+<h2 id="receiving-data">Receiving Data</h2>
+<p>Data received from the device appears in the main window.</p>
+<p>Useful options:</p>
+<ul>
+<li><strong>Timestamp</strong>: adds a timestamp to each line.</li>
+<li><strong>Log to file</strong>: records all input/output to a log file.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="permission-denied-when-opening-the-port">Permission denied when opening the port</h3>
+<p>Add your user to the <code>dialout</code> group:</p>
+<pre><code class="language-bash">sudo usermod -aG dialout $USER
+</code></pre>
+<p>Log out and back in.</p>
+<h3 id="no-serial-port-detected">No serial port detected</h3>
+<p>Check:</p>
+<ul>
+<li>USB cable</li>
+<li>USB‑serial converter (CH340, CP2102, FTDI)</li>
+<li>Access rights (<code>ls -l /dev/ttyUSB*</code>)</li>
+</ul>
+<h2 id="best-practices">Best Practices</h2>
+<ul>
+<li>Always verify the exact serial configuration of the device.</li>
+<li>Close CuteCom before flashing firmware or using another serial tool.</li>
+<li>Enable logging for critical testing sessions.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>CuteCom is a fast, simple, and effective tool for working with UART interfaces without using a terminal.</p>
 
 <ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
   <li class="last-updated-holder displayDate loading">
@@ -133,7 +188,34 @@ You can navigate from menu or just use the search function.</p>
 
     <div id="toc-collapse" class="navbar-collapse collapse card">
         <ul class="nav flex-column bs-sidenav">
-            <li class="nav-item main"><a class="nav-link" href="#welcome-to-the-wiki">Welcome to the Wiki</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#cutecom-usage-documentation">CuteCom Usage Documentation</a></li>
+                <li class="nav-item">
+                    <a href="#introduction" class="nav-link">Introduction</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#installation" class="nav-link">Installation</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#launching-the-application" class="nav-link">Launching the Application</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#serial-port-configuration" class="nav-link">Serial Port Configuration</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#sending-commands" class="nav-link">Sending Commands</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#receiving-data" class="nav-link">Receiving Data</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#best-practices" class="nav-link">Best Practices</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#conclusion" class="nav-link">Conclusion</a>
+                </li>
         </ul>
     </div>
 </div></div>
@@ -146,11 +228,11 @@ You can navigate from menu or just use the search function.</p>
 	</div>
       </footer>
       <script>
-	var base_url = ".",
+	var base_url = "..",
             shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
       </script>
-      <script src="js/base.js" defer></script>
-      <script src="search/main.js" defer></script>
+      <script src="../js/base.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
       <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -218,8 +300,3 @@ You can navigate from menu or just use the search function.</p>
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.6.1
-Build Date UTC : 2026-03-19 09:23:13.152063+00:00
--->
