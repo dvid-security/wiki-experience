@@ -14,17 +14,17 @@ In order to flash the firmware, you need to process following steps:
 
 1. Connect the "UART" header of the board to your computer via a USB-UART bridge
 
-![UART Dongle Connected STM32](../img/uartDongleConnectedStm32.jpg)
+![UART Dongle Connected STM32](./img/uartDongleConnectedStm32.jpg)
 
 2. Power up the board (connect the UART dongle to your computer)
 
 3. Press and hold the "BTLD CORE" button
 
-![STM32 BTLD Core](../img/stm32_BTLD-CORE.png)
+![STM32 BTLD Core](./img/stm32_BTLD-CORE.png)
 
 4. Press, then release the "RESET" button
 
-![STM32 Reset](../img/stm32_RESET.png)
+![STM32 Reset](./img/stm32_RESET.png)
 
 5. Release the "BTLD CORE" button
 
