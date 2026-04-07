@@ -66,8 +66,8 @@ You can now press the reset button to restart the training, something should app
 
 ## Recrue
 
-* Bootloader : [ESP32 bootloader.bin](./files/esp32_bootloader)
-* Partition : [ESP32 partition.bin](./files/esp32_partition.bin)
+* Bootloader : [ESP32 bootloader.bin](./files/esp32_bootloader.bin)
+* Partition : [ESP32 partitions.bin](./files/esp32_partitions.bin)
 
 ```bash
 esptool.py --port /dev/ttyUSB0 --baud 115200 --chip esp32 write_flash 0x1000 bootloader.bin 0x8000 esp32_parititons.bin 0x10000 ./[FIRMWARE]

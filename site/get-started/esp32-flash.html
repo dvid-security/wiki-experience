@@ -169,8 +169,8 @@ Hard resetting via RTS pin...
 <p>You can now press the reset button to restart the training, something should appear on the screen.</p>
 <h2 id="recrue">Recrue</h2>
 <ul>
-<li>Bootloader : <a href="./files/esp32_bootloader">ESP32 bootloader.bin</a></li>
-<li>Partition : <a href="./files/esp32_partition.bin">ESP32 partition.bin</a></li>
+<li>Bootloader : <a href="files/esp32_bootloader.bin">ESP32 bootloader.bin</a></li>
+<li>Partition : <a href="files/esp32_partitions.bin">ESP32 partitions.bin</a></li>
 </ul>
 <pre><code class="language-bash">esptool.py --port /dev/ttyUSB0 --baud 115200 --chip esp32 write_flash 0x1000 bootloader.bin 0x8000 esp32_parititons.bin 0x10000 ./[FIRMWARE]
 </code></pre>
