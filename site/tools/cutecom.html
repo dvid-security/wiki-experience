@@ -142,6 +142,10 @@ sudo apt install cutecom
 <li><strong>Log to file</strong>: records all input/output to a log file.</li>
 </ul>
 <h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="nothing-is-working-on-uart">Nothing is working on UART</h3>
+<p>This issue can have 2 root-cause :
+* The configuration is not set as CR/LF (Carriage return / Line Feed). The board doesn't understand that you have send a command
+* The baudrate is not correctly set. Try with standard value (ex.: 9600 / 115200) or plug a logic-analyzer.</p>
 <h3 id="permission-denied-when-opening-the-port">Permission denied when opening the port</h3>
 <p>Add your user to the <code>dialout</code> group:</p>
 <pre><code class="language-bash">sudo usermod -aG dialout $USER

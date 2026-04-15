@@ -50,6 +50,12 @@ Useful options:
 * **Log to file**: records all input/output to a log file.
 
 ## Troubleshooting
+### Nothing is working on UART
+This issue can have 2 root-cause :
+* The configuration is not set as CR/LF (Carriage return / Line Feed). The board doesn't understand that you have send a command
+* The baudrate is not correctly set. Try with standard value (ex.: 9600 / 115200) or plug a logic-analyzer.
+
+
 ### Permission denied when opening the port
 Add your user to the `dialout` group:
 
