@@ -124,6 +124,21 @@ esptool.py -h
 <p><a href="files/espc6_com-at.bin">espc6_com-at.bin</a></p>
 </li>
 </ul>
+<p>In some training, ESP-AT firmware is needed. To use it, you need to adjust the wiring inside the firmware. Thiss procedure will full flash the ESPc6. You don't need to download bootloader nor the memory map.</p>
+<pre><code class="language-bash"># Download the raw binary 4.0.0.0 is working well
+https://docs.espressif.com/projects/esp-at/en/latest/esp32c6/AT_Binary_Lists/esp_at_binaries.html
+
+# Download the tool to adjust wiring :
+wget https://raw.githubusercontent.com/espressif/esp-at/b1a323e9580354d584591dcbddce372e87734a85/tools/at.py
+
+unzip ESP32-C6-4MB-AT-V4.0.0.0.zip
+
+mv ESP32-C6-4MB-AT-V4.0.0.0/ESP32-C6-4MB-V4.0.0.0/factory/factory_ESP32C6-4MB.bin .
+
+python at.py modify_bin --tx_pin 1 --rx_pin 0 --cts_pin -1 --rts_pin -1 --input factory_ESP32C6-4MB.bin
+
+esptool.py -p /dev/ttyUSB0 -b 921600 --chip esp32c6 write_flash --flash_mode dio --flash_size 4MB --flash_freq 80m 0x0 target.bin
+</code></pre>
 <h2 id="mapping">Mapping</h2>
 <p>Regarding the firmware, following parts are available :</p>
 <ul>
