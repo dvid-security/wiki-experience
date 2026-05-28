@@ -15,3 +15,5 @@ In this area, you will find useful information for the hardware trainings. There
 
 # Gateway
 In this area, you will find useful information for the gateway trainings. There will be pages about gateway specific protocols and tools.
+
+# Test Git
