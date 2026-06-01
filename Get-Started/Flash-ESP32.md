@@ -2,7 +2,7 @@
 title: Flash the ESP32
 description: 
 published: true
-date: 2026-06-01T13:26:07.073Z
+date: 2026-06-01T14:46:53.502Z
 tags: get started
 editor: markdown
 dateCreated: 2026-05-28T08:29:34.875Z
@@ -31,16 +31,16 @@ In order to flash the firmware, you need to process following steps:
 
 - Connect the "UART" header of the board to your computer via a USB-UART bridge
 
-![uartdongleconnectedesp32.png](/flash-esp32/uartdongleconnectedesp32.png)
+![uartdongleconnectedesp32.png](/files/flash-esp32/uartdongleconnectedesp32.png)
 
 - Power up the board (connect the UART dongle to your computer)
 - Press and hold the "BTLD CORE" button
 
-![esp32_btld-core.png](/flash-esp32/esp32_btld-core.png)
+![esp32_btld-core.png](/files/flash-esp32/esp32_btld-core.png)
 
 - Press, then release the "RESET" button
 
-![esp32_reset.png](/flash-esp32/esp32_reset.png)
+![esp32_reset.png](/files/flash-esp32/esp32_reset.png)
 
 - Release the "BTLD CORE" button
 - Execute the flash command
@@ -76,9 +76,9 @@ You can now press the reset button to restart the training, something should app
 
 # **Recrue**
 
-- Bootloader : [esp32_bootloader.bin](/flash-esp32/esp32_bootloader.bin)
+- Bootloader : [esp32_bootloader.bin](/files/flash-esp32/esp32_bootloader.bin)
 
-- Partition : [esp32_partitions.bin](/flash-esp32/esp32_partitions.bin)
+- Partition : [esp32_partitions.bin](/files/flash-esp32/esp32_partitions.bin)
 
 ```bash
 esptool --port /dev/ttyUSB0 --baud 115200 --chip esp32 write-flash 0x1000 bootloader.bin 0x8000 esp32_parititons.bin 0x10000 ./[FIRMWARE]
