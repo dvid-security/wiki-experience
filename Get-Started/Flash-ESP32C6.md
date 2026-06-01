@@ -2,7 +2,7 @@
 title: Flash ESP32-C6
 description: 
 published: true
-date: 2026-06-01T13:41:15.203Z
+date: 2026-06-01T14:50:39.998Z
 tags: get started
 editor: markdown
 dateCreated: 2026-05-28T08:29:39.949Z
@@ -19,11 +19,11 @@ esptool -h
 
 You need to download those files :
 
-- [espc6_bootloader.bin](/flash-esp32c6/espc6_bootloader.bin)
+- [espc6_bootloader.bin](/files/flash-esp32c6/espc6_bootloader.bin)
 
-- [espc6_partition-table.bin](/flash-esp32c6/espc6_partition-table.bin)
+- [espc6_partition-table.bin](/files/flash-esp32c6/espc6_partition-table.bin)
 
-- [espc6_com-at.bin](/flash-esp32c6/espc6_com-at.bin)
+- [espc6_com-at.bin](/files/flash-esp32c6/espc6_com-at.bin)
 
 In some training, ESP-AT firmware is needed. To use it, you need to adjust the wiring inside the firmware. Thiss procedure will full flash the ESPc6. You don't need to download bootloader nor the memory map.
 
@@ -59,7 +59,7 @@ To flash, press and hold the `BTLD RADIO` button, then briefly click the `COL
 
 To flash the ESPC6, you need to wire your UART dongle according the following picture :
 
-![wiringc6.jpg](/flash-esp32c6/wiringc6.jpg)
+![wiringc6.jpg](/files/flash-esp32c6/wiringc6.jpg)
 
 # **Run**
 
