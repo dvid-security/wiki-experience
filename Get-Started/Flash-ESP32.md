@@ -2,15 +2,15 @@
 title: Flash the ESP32
 description: 
 published: true
-date: 2026-05-13T13:04:49.799Z
+date: 2026-06-01T13:26:07.073Z
 tags: get started
 editor: markdown
-dateCreated: 2026-05-13T13:04:48.989Z
+dateCreated: 2026-05-28T08:29:34.875Z
 ---
 
 # **Setup**
 
-You need to install the tool `esptool.py`:
+You need to install the tool `esptool`:
 
 ```bash
 pip install esptool
@@ -31,16 +31,16 @@ In order to flash the firmware, you need to process following steps:
 
 - Connect the "UART" header of the board to your computer via a USB-UART bridge
 
-![UART Dongle Connected ESP32](https://dvid-security.github.io/wiki-experience/get-started/img/uartDongleConnectedEsp32.png)
+![uartdongleconnectedesp32.png](/flash-esp32/uartdongleconnectedesp32.png)
 
 - Power up the board (connect the UART dongle to your computer)
 - Press and hold the "BTLD CORE" button
 
-![ESP32 BTLD Core](https://dvid-security.github.io/wiki-experience/get-started/img/esp32_BTLD-CORE.png)
+![esp32_btld-core.png](/flash-esp32/esp32_btld-core.png)
 
 - Press, then release the "RESET" button
 
-![ESP32 Reset](https://dvid-security.github.io/wiki-experience/get-started/img/esp32_RESET.png)
+![esp32_reset.png](/flash-esp32/esp32_reset.png)
 
 - Release the "BTLD CORE" button
 - Execute the flash command
@@ -76,13 +76,9 @@ You can now press the reset button to restart the training, something should app
 
 # **Recrue**
 
-- Bootloader :
+- Bootloader : [esp32_bootloader.bin](/flash-esp32/esp32_bootloader.bin)
 
-[esp32_bootloader.bin](attachment:da33d70d-1c30-4c16-bcd5-daf9e4eb1f5d:esp32_bootloader.bin)
-
-- Partition :
-
-[esp32_partitions.bin](attachment:7ac91544-f5b2-44d9-9b71-aa67bf61d6fd:esp32_partitions.bin)
+- Partition : [esp32_partitions.bin](/flash-esp32/esp32_partitions.bin)
 
 ```bash
 esptool --port /dev/ttyUSB0 --baud 115200 --chip esp32 write-flash 0x1000 bootloader.bin 0x8000 esp32_parititons.bin 0x10000 ./[FIRMWARE]
