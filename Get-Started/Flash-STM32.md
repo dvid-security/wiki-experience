@@ -2,10 +2,10 @@
 title: Flash the STM32
 description: 
 published: true
-date: 2026-05-13T13:03:51.124Z
+date: 2026-06-01T13:33:42.338Z
 tags: get started
 editor: markdown
-dateCreated: 2026-05-13T13:03:50.324Z
+dateCreated: 2026-05-28T08:29:45.149Z
 ---
 
 # **Setup**
@@ -22,16 +22,16 @@ In order to flash the firmware, you need to process following steps:
 
 - Connect the "UART" header of the board to your computer via a USB-UART bridge
 
-![UART Dongle Connected STM32](https://dvid-security.github.io/wiki-experience/get-started/img/uartDongleConnectedStm32.jpg)
+![uartdongleconnectedstm32.jpg](/flash-stm32/uartdongleconnectedstm32.jpg)
 
 - Power up the board (connect the UART dongle to your computer)
 - Press and hold the "BTLD CORE" button
 
-![STM32 BTLD Core](https://dvid-security.github.io/wiki-experience/get-started/img/stm32_BTLD-CORE.png)
+![stm32_btld-core.png](/flash-stm32/stm32_btld-core.png)
 
 - Press, then release the "RESET" button
 
-![STM32 Reset](https://dvid-security.github.io/wiki-experience/get-started/img/stm32_RESET.png)
+![stm32_reset.png](/flash-stm32/stm32_reset.png)
 
 - Release the "BTLD CORE" button
 - Execute the flash command
