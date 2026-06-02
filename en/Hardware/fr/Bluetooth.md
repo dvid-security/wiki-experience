@@ -2,10 +2,10 @@
 title: Bluetooth
 description: 
 published: true
-date: 2026-06-02T08:49:26.979Z
+date: 2026-06-02T08:50:34.595Z
 tags: 
 editor: markdown
-dateCreated: 2026-06-02T08:44:06.445Z
+dateCreated: 2026-06-02T08:46:10.840Z
 ---
 
 Le Bluetooth est un protocole de communication sans fil à courte portée conçu pour échanger des données entre des appareils sur une courte distance à l'aide d'ondes radio. Il fonctionne dans la bande ISM (Industriel, Scientifique et Médical) de 2,4 GHz et est largement utilisé pour connecter des appareils tels que des smartphones, des ordinateurs portables, des écouteurs, des objets connectés (wearables) et des appareils IoT.

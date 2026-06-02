@@ -2,10 +2,10 @@
 title: MQTT
 description: 
 published: true
-date: 2026-06-02T08:32:54.682Z
+date: 2026-06-02T08:34:45.507Z
 tags: 
 editor: markdown
-dateCreated: 2026-06-02T08:32:37.642Z
+dateCreated: 2026-06-02T08:34:40.737Z
 ---
 
 MQTT (**Message Queuing Telemetry Transport**) est un protocole de messagerie léger de type publication-abonnement (publish-subscribe) conçu pour les appareils limités et les réseaux à faible bande passante, à latence élevée ou peu fiables. Il est largement utilisé dans les applications de l'Internet des objets (IoT) pour une communication efficace entre les capteurs, les appareils et les serveurs.

@@ -1,49 +1,46 @@
 ---
-title: Flasher le STM32
+title: Flash the STM32
 description: 
 published: true
-date: 2026-06-02T08:09:29.355Z
-tags: 
+date: 2026-06-02T09:01:57.243Z
+tags: get started
 editor: markdown
-dateCreated: 2026-06-02T08:09:12.832Z
+dateCreated: 2026-05-28T08:29:45.149Z
 ---
 
-# Configuration
+# **Setup**
 
-Vous devez installer l'outil `stm32flash` :
+You need to install the tool `stm32flash`:
 
 ```bash
 apt install stm32flash
-stm32flash -h
 ```
 
-# Exécution
+# **Run**
 
-Pour flasher le firmware, suivez les étapes suivantes :
+In order to flash the firmware, you need to process following steps:
 
-- Connectez l'UART de la carte à votre ordinateur via le dongle UART.
+- Connect the "UART" header of the board to your computer via a USB-UART bridge
 
 ![uartdongleconnectedstm32.jpg](/files/flash-stm32/uartdongleconnectedstm32.jpg)
 
-- Mettez la carte sous tension (connectez le dongle UART à votre ordinateur)
-
-- Appuyez sur le bouton `BTLD CORE` et maintenez-le enfoncé.
+- Power up the board (connect the UART dongle to your computer)
+- Press and hold the "BTLD CORE" button
 
 ![stm32_btld-core.png](/files/flash-stm32/stm32_btld-core.png)
 
-- Appuyez sur le bouton `RESET`, puis relâchez-le.
+- Press, then release the "RESET" button
 
 ![stm32_reset.png](/files/flash-stm32/stm32_reset.png)
 
-- Relâchez le bouton `BTLD CORE`.
-
-- Exécutez la commande de flashage :
+- Release the "BTLD CORE" button
+- Execute the flash command
 
 ```bash
 stm32flash -b 115200 -w ./firmware.stm32 /dev/ttyUSB0
 ```
 
-Trace d'exécution :
+Execution trace :
 
 ```bash
 stm32flash Arduino_STM32_0.9
@@ -65,4 +62,4 @@ Erasing memory
 Wrote address 0x080071b0 (100.00%)
 ```
 
-Vous pouvez maintenant appuyer sur le bouton de réinitialisation pour redémarrer l’entraînement. Un message devrait s’afficher à l’écran.
+You can now press the reset button to restart the training, something should appear on the screen.

@@ -2,10 +2,10 @@
 title: HTTP
 description: 
 published: true
-date: 2026-06-02T08:23:39.259Z
+date: 2026-06-02T08:24:21.878Z
 tags: 
 editor: markdown
-dateCreated: 2026-06-02T08:23:23.764Z
+dateCreated: 2026-06-02T08:24:17.643Z
 ---
 
 Le **Hypertext Transfer Protocol** (HTTP) est un protocole fondamental du World Wide Web, permettant la communication entre les clients (tels que les navigateurs web) et les serveurs. C'est un protocole de la couche application conçu pour la transmission de documents hypermédias, tels que HTML, des images et des vidéos. HTTP suit un modèle requête-réponse, où les clients envoient des requêtes, et les serveurs renvoient des réponses.

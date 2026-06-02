@@ -2,10 +2,10 @@
 title: Flasher le STM32
 description: 
 published: true
-date: 2026-06-02T08:09:29.355Z
+date: 2026-06-02T08:10:47.101Z
 tags: 
 editor: markdown
-dateCreated: 2026-06-02T08:09:12.832Z
+dateCreated: 2026-06-02T08:10:42.695Z
 ---
 
 # Configuration

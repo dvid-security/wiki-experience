@@ -2,10 +2,10 @@
 title: I2C
 description: 
 published: true
-date: 2026-06-02T08:47:22.974Z
+date: 2026-06-02T08:48:23.589Z
 tags: 
 editor: markdown
-dateCreated: 2026-06-02T08:47:06.072Z
+dateCreated: 2026-06-02T08:48:19.397Z
 ---
 
 Le protocole **I2C** (Inter-Integrated Circuit) est un bus de communication série synchrone largement utilisé dans les systèmes embarqués pour connecter des microcontrôleurs à des périphériques tels que des capteurs, des puces mémoire, des contrôleurs audio, des écrans, et plus encore. Développé à l'origine par **Philips** en **1982**, il est depuis devenu une norme maintenue par **NXP** et adoptée dans toute l'industrie de l'électronique.

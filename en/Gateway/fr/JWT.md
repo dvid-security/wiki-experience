@@ -2,10 +2,10 @@
 title: JWT
 description: 
 published: true
-date: 2026-06-02T08:29:59.172Z
+date: 2026-06-02T08:31:35.409Z
 tags: 
 editor: markdown
-dateCreated: 2026-06-02T08:29:43.276Z
+dateCreated: 2026-06-02T08:31:30.935Z
 ---
 
 Les **JSON Web Tokens (JWT)** sont un mécanisme compact et sécurisé pour les URL, permettant de transmettre des informations en toute sécurité entre deux parties. Ils sont largement utilisés dans les applications modernes pour l'authentification, l'autorisation et l'échange d'informations, et sont définis par la norme ouverte RFC 7519.

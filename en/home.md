@@ -2,10 +2,10 @@
 title: Accueil
 description: 
 published: true
-date: 2026-06-02T09:06:34.647Z
+date: 2026-06-02T09:08:12.802Z
 tags: 
 editor: markdown
-dateCreated: 2026-06-02T09:06:19.142Z
+dateCreated: 2026-06-01T14:40:27.450Z
 ---
 
 **Bienvenue sur le wiki de DVID !**

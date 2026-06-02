@@ -2,10 +2,10 @@
 title: UART
 description: 
 published: true
-date: 2026-06-02T08:49:03.968Z
+date: 2026-06-02T08:50:38.711Z
 tags: 
 editor: markdown
-dateCreated: 2026-06-02T08:48:47.736Z
+dateCreated: 2026-06-02T08:50:34.791Z
 ---
 
 L'UART (**Universal Asynchronous Receiver-Transmitter**) est un protocole de communication matériel utilisé pour la communication série **asynchrone** entre des appareils électroniques. Contrairement au SPI et à l'I2C, qui sont des protocoles synchrones, l'UART ne nécessite pas de signal d'horloge. Au lieu de cela, il utilise un débit en bauds prédéfini (baud rate) pour synchroniser la transmission de données.

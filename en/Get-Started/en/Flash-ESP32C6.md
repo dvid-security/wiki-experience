@@ -1,23 +1,23 @@
 ---
-title: Flasher l'ESP32-C6
+title: Flash ESP32-C6
 description: 
 published: true
-date: 2026-06-02T08:02:23.778Z
-tags: 
+date: 2026-06-02T09:02:11.933Z
+tags: get started
 editor: markdown
-dateCreated: 2026-06-02T07:57:38.690Z
+dateCreated: 2026-05-28T08:29:39.949Z
 ---
 
-# Configuration
+# **Setup**
 
-Vous devez installer l'outil `esptool.py` :
+You need to install the tool `esptool.py`:
 
 ```bash
 pip install esptool
 esptool -h
 ```
 
-Vous devez télécharger les fichiers suivants :
+You need to download those files :
 
 - [espc6_bootloader.bin](/files/flash-esp32c6/espc6_bootloader.bin)
 
@@ -25,16 +25,13 @@ Vous devez télécharger les fichiers suivants :
 
 - [espc6_com-at.bin](/files/flash-esp32c6/espc6_com-at.bin)
 
-Certains tutoriels nécessitent le firmware ESP-AT. Son utilisation requiert une modification du câblage interne. Cette procédure permet de flasher entièrement l'ESP32-C6. Le téléchargement du bootloader et de la carte mémoire n'est pas nécessaire.
+In some training, ESP-AT firmware is needed. To use it, you need to adjust the wiring inside the firmware. Thiss procedure will full flash the ESPc6. You don't need to download bootloader nor the memory map.
 
 ```bash
-
-# Télécharger le binaire brut 4.0.0.0 (fonctionne correctement)
-
+# Download the raw binary 4.0.0.0 is working well
 https://docs.espressif.com/projects/esp-at/en/latest/esp32c6/AT_Binary_Lists/esp_at_binaries.html
 
-# Télécharger l'outil de configuration du câblage :
-
+# Download the tool to adjust wiring :
 wget https://raw.githubusercontent.com/espressif/esp-at/b1a323e9580354d584591dcbddce372e87734a85/tools/at.py
 
 unzip ESP32-C6-4MB-AT-V4.0.0.0.zip
@@ -44,34 +41,33 @@ mv ESP32-C6-4MB-AT-V4.0.0.0/ESP32-C6-4MB-V4.0.0.0/factory/factory_ESP32C6-4MB.bi
 python at.py modify_bin --tx_pin 1 --rx_pin 0 --cts_pin -1 --rts_pin -1 --input factory_ESP32C6-4MB.bin
 
 esptool.py -p /dev/ttyUSB0 -b 921600 --chip esp32c6 write_flash --flash_mode dio --flash_size 4MB --flash_freq 80m 0x0 target.bin
-
 ```
 
-# Mapping
+# **Mapping**
 
-Concernant le firmware, les éléments suivants sont disponibles :
+Regarding the firmware, following parts are available :
 
-- `0x1000` : espc6_bootloader.bin
-- `0x8000` : espc6_partition-table.bin
-- `0x10000` : espc6_com-at.bin
+- `0x1000` : espc6_bootloader.bin
+- `0x8000` : espc6_partition-table.bin
+- `0x10000` : espc6_com-at.bin
 
-# Flash
+# **Flash**
 
-Pour flasher, maintenez le bouton `BTLD RADIO` enfoncé, puis appuyez brièvement sur `COLD RESTART`. Maintenez le bouton `BTLD RADIO` enfoncé jusqu'au démarrage du processus de flash du firmware. Une fois le processus lancé, vous pouvez relâcher le bouton.
+To flash, press and hold the `BTLD RADIO` button, then briefly click the `COLD RESTART` button. Keep holding the `BTLD RADIO` button until the flashing process starts. Once the process begins, you can release the button.
 
-# Câblage
+# **Wiring**
 
-Pour flasher l'ESP32-C6, vous devez câbler votre dongle UART comme indiqué sur l'image suivante :
+To flash the ESPC6, you need to wire your UART dongle according the following picture :
 
 ![wiringc6.jpg](/files/flash-esp32c6/wiringc6.jpg)
 
-# **Exécution**
+# **Run**
 
 ```bash
 esptool --port /dev/ttyUSB0 --baud 115200 --chip esp32c6 write-flash 0x1000 espc6_bootloader.bin 0x8000 espc6_partition-table.bin 0x10000 espc6_com-at.bin
 ```
 
-Console :
+Console trace :
 
 ```bash
 esptool.py v4.10.dev2

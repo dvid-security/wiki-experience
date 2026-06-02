@@ -2,10 +2,10 @@
 title: Flasher l'ESP32-C6
 description: 
 published: true
-date: 2026-06-02T08:02:23.778Z
+date: 2026-06-02T08:04:29.669Z
 tags: 
 editor: markdown
-dateCreated: 2026-06-02T07:57:38.690Z
+dateCreated: 2026-06-02T07:59:03.991Z
 ---
 
 # Configuration

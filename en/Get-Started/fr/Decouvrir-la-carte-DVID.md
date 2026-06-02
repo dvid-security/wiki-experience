@@ -2,10 +2,10 @@
 title: Découvrir la carte DVID
 description: 
 published: true
-date: 2026-06-02T08:03:09.542Z
+date: 2026-06-02T08:04:23.234Z
 tags: 
 editor: markdown
-dateCreated: 2026-06-02T07:46:37.709Z
+dateCreated: 2026-06-02T07:47:41.229Z
 ---
 
 Sur la carte DVID, vous pouvez identifier deux types de connecteurs de programmation. Le premier est le JTAG. Cette méthode de programmation avancée permet un accès direct à la mémoire et aux registres des composants.
