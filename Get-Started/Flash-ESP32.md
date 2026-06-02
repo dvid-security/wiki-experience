@@ -2,10 +2,10 @@
 title: Flash the ESP32
 description: 
 published: true
-date: 2026-06-01T13:26:07.073Z
+date: 2026-06-02T08:34:18.106Z
 tags: get started
 editor: markdown
-dateCreated: 2026-05-28T08:29:34.875Z
+dateCreated: 2026-06-02T08:13:11.581Z
 ---
 
 # **Setup**
