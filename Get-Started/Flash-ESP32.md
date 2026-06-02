@@ -1,55 +1,57 @@
 ---
-title: Flash the ESP32
+title: Flasher l'ESP32
 description: 
 published: true
-date: 2026-06-01T14:46:53.502Z
-tags: get started
+date: 2026-06-02T07:52:49.451Z
+tags: 
 editor: markdown
-dateCreated: 2026-05-28T08:29:34.875Z
+dateCreated: 2026-06-02T07:52:49.450Z
 ---
 
-# **Setup**
+# Configuration
 
-You need to install the tool `esptool`:
+Vous devez installer l'outil `esptool` :
 
 ```bash
 pip install esptool
 esptool -h
 ```
 
-# **Mapping**
+# Mappage
 
-Regarding the firmware, following parts are available :
+Concernant le firmware, les éléments suivants sont disponibles :
 
-- `0x1000` : bootloader
-- `0x8000` : partitions
-- `0x10000` : firmware
+- `0x1000` : chargeur de démarrage
+- `0x8000` : partitions
+- `0x10000` : firmware
 
-# **Run**
+# Exécution
 
-In order to flash the firmware, you need to process following steps: 
+Pour flasher le firmware, suivez les étapes suivantes :
 
-- Connect the "UART" header of the board to your computer via a USB-UART bridge
+- Connectez l'UART de la carte à votre ordinateur via l'adaptateur USB-UART.
 
 ![uartdongleconnectedesp32.png](/files/flash-esp32/uartdongleconnectedesp32.png)
 
-- Power up the board (connect the UART dongle to your computer)
-- Press and hold the "BTLD CORE" button
+- Mettez la carte sous tension (connectez le dongle UART à votre ordinateur).
+
+- Appuyez sur le bouton « BTLD CORE » et maintenez-le enfoncé.
 
 ![esp32_btld-core.png](/files/flash-esp32/esp32_btld-core.png)
 
-- Press, then release the "RESET" button
+- Appuyez sur le bouton « RESET », puis relâchez-le.
 
 ![esp32_reset.png](/files/flash-esp32/esp32_reset.png)
 
-- Release the "BTLD CORE" button
-- Execute the flash command
+- Relâchez le bouton « BTLD CORE ».
+
+- Exécutez la commande de flashage :
 
 ```bash
 esptool --port /dev/ttyUSB0 --baud 115200 --chip esp32 write-flash 0x10000 ./firmware.esp32
 ```
 
-Execution trace :
+Trace d'exécution :
 
 ```bash
 esptool.py v4.6.2
@@ -72,14 +74,14 @@ Leaving...
 Hard resetting via RTS pin...
 ```
 
-You can now press the reset button to restart the training, something should appear on the screen.
+Vous pouvez maintenant appuyer sur le bouton de réinitialisation pour redémarrer l'entraînement. Un message devrait s'afficher à l'écran.
 
-# **Recrue**
+# Recrutement
 
-- Bootloader : [esp32_bootloader.bin](/files/flash-esp32/esp32_bootloader.bin)
+- Chargeur de démarrage : [esp32_bootloader.bin](/files/flash-esp32/esp32_bootloader.bin)
 
 - Partition : [esp32_partitions.bin](/files/flash-esp32/esp32_partitions.bin)
 
 ```bash
-esptool --port /dev/ttyUSB0 --baud 115200 --chip esp32 write-flash 0x1000 bootloader.bin 0x8000 esp32_parititons.bin 0x10000 ./[FIRMWARE]
+esptool --port /dev/ttyUSB0 --baud 115200 --chip esp32 write-flash 0x1000 bootloader.bin 0x8000 esp32_partitions.bin 0x10000 ./[FIRMWARE]
 ```
