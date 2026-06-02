@@ -8,11 +8,11 @@ editor: markdown
 dateCreated: 2026-06-01T14:40:27.450Z
 ---
 
-**Bienvenue sur le wiki de DVID !**
+**Welcome on DVID Wiki !**
 
 # Hardware
-Dans cette section, vous trouverez des informations utiles pour les formations sur le matériel. Des pages sont consacrées aux protocoles et outils spécifiques au matériel.
+In this area, you will find useful information for the hardware trainings. There will be pages about hardware specific protocols and tools.
 
 # Gateway
 
-Dans cette section, vous trouverez des informations utiles pour les formations sur les passerelles. Des pages sont consacrées aux protocoles et outils spécifiques aux passerelles.
+In this area, you will find useful information for the gateway trainings. There will be pages about gateway specific protocols and tools.
