@@ -2,7 +2,7 @@
 title: JWT
 description: 
 published: true
-date: 2026-06-02T08:31:35.409Z
+date: 2026-06-02T09:12:32.081Z
 tags: 
 editor: markdown
 dateCreated: 2026-06-02T08:31:30.935Z

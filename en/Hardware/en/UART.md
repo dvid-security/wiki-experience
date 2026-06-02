@@ -2,7 +2,7 @@
 title: UART
 description: 
 published: true
-date: 2026-06-02T09:03:21.495Z
+date: 2026-06-02T09:13:27.471Z
 tags: hardware
 editor: markdown
 dateCreated: 2026-05-28T08:30:01.753Z

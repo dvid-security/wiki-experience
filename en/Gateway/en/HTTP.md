@@ -2,7 +2,7 @@
 title: HTTP
 description: 
 published: true
-date: 2026-06-02T09:02:33.386Z
+date: 2026-06-02T09:12:15.251Z
 tags: gateway
 editor: markdown
 dateCreated: 2026-05-28T08:29:13.198Z

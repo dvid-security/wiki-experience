@@ -2,7 +2,7 @@
 title: Bluetooth
 description: 
 published: true
-date: 2026-06-02T09:03:54.770Z
+date: 2026-06-02T09:13:18.628Z
 tags: hardware
 editor: markdown
 dateCreated: 2026-05-28T08:29:50.670Z

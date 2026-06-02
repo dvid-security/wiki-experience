@@ -2,7 +2,7 @@
 title: Flash the STM32
 description: 
 published: true
-date: 2026-06-02T09:01:57.243Z
+date: 2026-06-02T09:12:53.837Z
 tags: get started
 editor: markdown
 dateCreated: 2026-05-28T08:29:45.149Z

@@ -2,7 +2,7 @@
 title: I2C
 description: 
 published: true
-date: 2026-06-02T09:03:37.372Z
+date: 2026-06-02T09:13:22.999Z
 tags: hardware
 editor: markdown
 dateCreated: 2026-05-28T08:29:55.846Z

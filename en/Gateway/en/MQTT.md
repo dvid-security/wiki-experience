@@ -2,7 +2,7 @@
 title: MQTT
 description: 
 published: true
-date: 2026-06-02T09:03:02.866Z
+date: 2026-06-02T09:12:23.566Z
 tags: gateway
 editor: markdown
 dateCreated: 2026-05-28T08:29:24.351Z

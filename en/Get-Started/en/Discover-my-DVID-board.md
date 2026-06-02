@@ -2,7 +2,7 @@
 title: Discover my DVID board
 description: 
 published: true
-date: 2026-06-02T09:01:06.955Z
+date: 2026-06-02T09:12:40.852Z
 tags: get started
 editor: markdown
 dateCreated: 2026-05-28T08:29:29.385Z

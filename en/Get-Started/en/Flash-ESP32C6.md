@@ -2,7 +2,7 @@
 title: Flash ESP32-C6
 description: 
 published: true
-date: 2026-06-02T09:02:11.933Z
+date: 2026-06-02T09:12:49.565Z
 tags: get started
 editor: markdown
 dateCreated: 2026-05-28T08:29:39.949Z
