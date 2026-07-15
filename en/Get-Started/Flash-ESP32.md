@@ -2,10 +2,10 @@
 title: Flash the ESP32
 description: 
 published: true
-date: 2026-06-02T09:12:45.233Z
-tags: get started
+date: 2026-07-15T08:52:50.520Z
+tags: 
 editor: markdown
-dateCreated: 2026-06-02T08:12:51.242Z
+dateCreated: 2026-06-02T11:27:51.982Z
 ---
 
 # **Setup**
@@ -81,5 +81,5 @@ You can now press the reset button to restart the training, something should app
 - Partition : [esp32_partitions.bin](/flash-esp32/esp32_partitions.bin)
 
 ```bash
-esptool --port /dev/ttyUSB0 --baud 115200 --chip esp32 write-flash 0x1000 bootloader.bin 0x8000 esp32_parititons.bin 0x10000 ./[FIRMWARE]
+esptool --port /dev/ttyUSB0 --baud 115200 --chip esp32 write-flash 0x1000 esp32_bootloader.bin 0x8000 esp32_partitions.bin 0x10000 ./[FIRMWARE]
 ```
